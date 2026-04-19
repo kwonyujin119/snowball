@@ -1,0 +1,35 @@
+name: 📊 Today 투자가이드 자동 생성
+
+on:
+  schedule:
+    - cron: '40 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 패키지 설치
+        run: pip install -r requirements.txt
+
+      - name: HTML 생성
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python generate.py
+
+      - name: GitHub Push
+        run: |
+          git config user.name  "InvestBot"
+          git config user.email "bot@snowball.kr"
+          git add index.html
+          git diff --cached --quiet || git commit -m "📊 투자가이드 $(TZ='Asia/Seoul' date +'%Y.%m.%d %H:%M KST')"
+          git push
