@@ -5,17 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Today 투자가이드 · 2026.04.24</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --gold:#9a7230;--gold2:#c49a38;--goldbg:#fdf8ee;
+  --gold:#9a7230;--gold2:#c49a38;--gold3:#f5e4a8;--goldbg:#fdf8ee;
   --red:#c93030;--redbg:#fff4f4;
   --green:#1e8a52;--greenbg:#f0faf5;
   --blue:#2659a8;--bluebg:#eef4ff;
   --pink:#d44070;--pinkbg:#fff0f5;
   --orange:#c05820;--orangebg:#fff5ee;
+  --purple:#7040b0;--purplebg:#f5f0ff;
   --text:#1a2030;--text2:#5a6680;--muted:#9aa0b0;--border:#e2e8f0;
-  --s1:#ffffff;--s2:#fff0f3;--s3:#fffbea;--s4:#f0faf4;
+  --s1:#ffffff;--s2:#fff0f3;--s3:#fffbea;--s4:#f0faf4;--s5:#f5f0ff;
+  --ink:#0a0c10;--ink2:#111520;--ink3:#1a1f2e;
+  --white:#f0ece4;--offwhite:#d8d2c4;
   --r:12px;--sh:0 2px 12px rgba(0,0,0,.07);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -26,7 +29,7 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .prog{position:fixed;top:0;left:0;z-index:999;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:width .1s;}
 
 /* HEADER */
-.hdr{position:sticky;top:0;z-index:400;background:rgba(20,26,42,.97);backdrop-filter:blur(16px);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.07);}
+.hdr{position:sticky;top:0;z-index:400;background:rgba(20,26,42,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.07);}
 .hdr-l{display:flex;align-items:center;gap:9px;}
 .logo{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--gold2);letter-spacing:.22em;text-transform:uppercase;}
 .hdiv{width:1px;height:14px;background:rgba(255,255,255,.18);}
@@ -38,12 +41,35 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .hdate{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(255,255,255,.38);}
 @media(max-width:380px){.hdate{display:none;}}
 
+/* ═══ TAB SWITCHER ═══ */
+.tab-bar{position:sticky;top:50px;z-index:350;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.tab-bar-in{max-width:680px;margin:0 auto;display:flex;}
+.tab-btn{flex:1;padding:14px 12px;background:transparent;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;color:var(--text2);border-bottom:3px solid transparent;transition:all .2s;position:relative;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold2);background:var(--goldbg);}
+.tab-btn.active.tab2-active{color:var(--ink);border-bottom-color:var(--ink);background:#1a1f2e;color:var(--gold2);}
+.tab-icon{font-size:14px;margin-right:4px;}
+.tab-desc{display:block;font-size:9px;font-weight:400;color:var(--muted);margin-top:2px;letter-spacing:.05em;}
+.tab-btn.active .tab-desc{color:var(--gold);}
+.tab-btn.active.tab2-active .tab-desc{color:rgba(245,228,168,.6);}
+@media(max-width:400px){.tab-btn{padding:12px 8px;font-size:12px;}.tab-desc{font-size:8px;}}
+
+/* ═══ PANEL TOGGLE ═══ */
+.panel{display:none;animation:panelIn .3s ease;}
+.panel.active{display:block;}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ═══════════════════════════════════════
+   TAB 1 · Today 투자가이드 스타일
+═══════════════════════════════════════ */
+
 /* TICKER */
 .ticker{background:#12182a;border-bottom:1px solid rgba(255,255,255,.05);height:34px;overflow:hidden;display:flex;align-items:center;}
 .ttrack{display:flex;animation:scrolltk 50s linear infinite;white-space:nowrap;}
 @keyframes scrolltk{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .ti{display:inline-flex;align-items:center;gap:6px;padding:0 18px;border-right:1px solid rgba(255,255,255,.05);font-family:'IBM Plex Mono',monospace;font-size:11px;}
-.ts{color:rgba(255,255,255,.35);font-weight:500;}.tv{color:rgba(255,255,255,.82);font-weight:600;}
+.ts{color:rgba(255,255,255,.35);font-weight:500;}
+.tv{color:rgba(255,255,255,.82);font-weight:600;}
 .tu{color:#50e898;}.td{color:#f07878;}
 
 /* VISITOR */
@@ -71,7 +97,7 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .hh1 em{color:var(--gold2);font-style:italic;}
 .hbadge{display:inline-flex;align-items:center;gap:6px;margin-top:8px;background:var(--goldbg);border:1px solid rgba(154,114,48,.2);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);}
 .qbox{flex-shrink:0;width:148px;background:var(--goldbg);border:1px solid rgba(154,114,48,.25);border-radius:10px;padding:12px;position:relative;overflow:hidden;}
-.qbox::before{content:'\201C';position:absolute;top:-10px;left:4px;font-family:'DM Serif Display',serif;font-size:64px;color:rgba(154,114,48,.1);line-height:1;}
+.qbox::before{content:'\201C';position:absolute;top:-10px;left:4px;font-family:'DM Serif Display',serif;font-size:64px;color:rgba(154,114,48,.1);}
 .qlbl{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;font-weight:600;}
 .qtxt{font-family:'DM Serif Display',serif;font-size:11px;color:var(--text);line-height:1.6;font-style:italic;position:relative;z-index:1;}
 .qauth{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text2);margin-top:6px;}
@@ -90,18 +116,20 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 /* LAYOUT */
 .wrap{max-width:680px;margin:0 auto;padding-bottom:64px;}
 .part{padding:24px 16px;}
-.p1{background:var(--s1);}.p2{background:var(--s2);}.p3{background:var(--s3);}.p4{background:var(--s4);}
+.p1{background:var(--s1);}.p2{background:var(--s2);}.p3{background:var(--s3);}.p4{background:var(--s4);}.p5{background:var(--s5);}
 .pdiv{height:4px;}
 .pd1{background:linear-gradient(90deg,rgba(201,48,48,.35),transparent);}
 .pd2{background:linear-gradient(90deg,rgba(212,64,112,.35),transparent);}
 .pd3{background:linear-gradient(90deg,rgba(192,128,0,.35),transparent);}
 .pd4{background:linear-gradient(90deg,rgba(30,138,82,.35),transparent);}
+.pd5{background:linear-gradient(90deg,rgba(112,64,176,.35),transparent);}
 .plbl{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
 .pnum{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.15em;padding:3px 9px;border-radius:3px;flex-shrink:0;}
 .n1{background:rgba(201,48,48,.09);color:var(--red);border:1px solid rgba(201,48,48,.2);}
 .n2{background:rgba(212,64,112,.09);color:var(--pink);border:1px solid rgba(212,64,112,.2);}
 .n3{background:rgba(192,128,0,.09);color:#c08000;border:1px solid rgba(192,128,0,.2);}
 .n4{background:rgba(30,138,82,.09);color:var(--green);border:1px solid rgba(30,138,82,.2);}
+.n5{background:rgba(112,64,176,.09);color:var(--purple);border:1px solid rgba(112,64,176,.2);}
 .ptit{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);}
 .pline{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
 
@@ -110,13 +138,14 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .c2{background:#fff8fa;border-color:#f0c0cc;}
 .c3{background:#fffdf0;border-color:#f0dca0;}
 .c4{background:#f4fdf8;border-color:#b0e0c0;}
+.c5{background:#f8f6ff;border-color:#d8ccf0;}
 .ch{padding:11px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .ct{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;}
 .cb{padding:14px 15px;}
 .cb p{font-size:13px;color:var(--text);line-height:1.85;}
 .cb p+p{margin-top:8px;}
 .cb b{font-weight:700;}
-.up{color:var(--green);font-weight:700;}.dn{color:var(--red);font-weight:700;}.warn{color:var(--red);font-weight:700;}
+.up{color:var(--green);font-weight:700;}.dn{color:var(--red);font-weight:700;}
 
 /* TAGS */
 .tg{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:4px;flex-shrink:0;white-space:nowrap;}
@@ -126,6 +155,7 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .tb{background:var(--bluebg);color:var(--blue);border:1px solid rgba(38,89,168,.2);}
 .tpk{background:var(--pinkbg);color:var(--pink);border:1px solid rgba(212,64,112,.2);}
 .to{background:var(--orangebg);color:var(--orange);border:1px solid rgba(192,88,32,.22);}
+.tpu{background:var(--purplebg);color:var(--purple);border:1px solid rgba(112,64,176,.2);}
 
 /* ALERT */
 .al{border-radius:var(--r);padding:13px 15px;margin-bottom:12px;display:flex;gap:11px;align-items:flex-start;}
@@ -142,8 +172,7 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 /* MKT GRID */
 .mg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
 @media(min-width:520px){.mg{grid-template-columns:repeat(4,1fr);}}
-.mc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 13px 11px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:transform .12s;}
-.mc:active{transform:scale(.97);}
+.mc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 13px 11px;box-shadow:var(--sh);position:relative;overflow:hidden;}
 .mc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;}
 .mup::before{background:linear-gradient(90deg,#1e8a52,#6fcfa3);}
 .mdn::before{background:linear-gradient(90deg,#c93030,#f08080);}
@@ -159,7 +188,6 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .tbl th{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.09em;color:var(--text2);text-transform:uppercase;text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);background:#f8f9fb;white-space:nowrap;font-weight:500;}
 .tbl td{padding:10px 12px;border-bottom:1px solid #f0f2f5;vertical-align:top;color:var(--text);font-size:12px;}
 .tbl tr:last-child td{border-bottom:none;}
-.tbl tr:hover td{background:#fafbfd;}
 .sy{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;}
 .sb2{font-size:10px;color:var(--text2);margin-top:2px;}
 .ut{color:var(--green);font-weight:700;font-family:'IBM Plex Mono',monospace;}
@@ -167,7 +195,43 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .gl{color:var(--gold);font-weight:700;font-family:'IBM Plex Mono',monospace;}
 .mn2{font-family:'IBM Plex Mono',monospace;}
 
-/* GRID 2 */
+/* ═══ 수급 패널 (PART 01 내부) ═══ */
+.flow-sec{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:var(--sh);}
+.flow-title{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text2);margin-bottom:12px;}
+.flow-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.flow-who{font-size:11px;color:var(--text);width:56px;flex-shrink:0;}
+.flow-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+.flow-fill{height:100%;border-radius:4px;}
+.flow-val{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;width:80px;text-align:right;}
+.stock-flow-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+@media(max-width:380px){.stock-flow-grid{grid-template-columns:1fr;}}
+.sf-card{background:#f8faff;border:1px solid var(--border);border-radius:8px;padding:11px 12px;}
+.sf-name{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.sf-row{display:flex;align-items:center;justify-content:space-between;padding:3px 0;font-size:11px;border-bottom:1px dashed var(--border);}
+.sf-row:last-child{border-bottom:none;}
+.sf-who{color:var(--text2);}
+.sf-val{font-family:'IBM Plex Mono',monospace;font-weight:700;}
+
+/* ═══ 공포탐욕 게이지 ═══ */
+.fg-wrap{padding:14px;}
+.fg-gauge{position:relative;height:20px;border-radius:10px;overflow:hidden;background:linear-gradient(90deg,#e05c5c 0%,#e09040 25%,#d4c040 50%,#70c070 75%,#20a050 100%);margin-bottom:8px;box-shadow:inset 0 2px 4px rgba(0,0,0,.15);}
+.fg-needle{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid rgba(0,0,0,.25);box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.fg-labels{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text2);margin-bottom:12px;}
+.fg-row{display:flex;align-items:center;gap:12px;}
+.fg-score{font-family:'DM Serif Display',serif;font-size:36px;line-height:1;color:#d06020;flex-shrink:0;}
+.fg-desc{font-size:12px;color:var(--text2);line-height:1.65;}
+.fg-desc b{color:var(--text);}
+
+/* ═══ SIGNAL CARDS ═══ */
+.signal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+@media(max-width:380px){.signal-grid{grid-template-columns:1fr;}}
+.sig-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 12px;text-align:center;box-shadow:var(--sh);}
+.sig-ico{font-size:24px;margin-bottom:6px;}
+.sig-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.sig-val{font-size:13px;font-weight:700;}
+.sig-sub{font-size:10px;color:var(--text2);margin-top:3px;line-height:1.4;}
+
+/* G2 */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
 @media(max-width:420px){.g2{grid-template-columns:1fr;}}
 
@@ -247,6 +311,9 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 .cmt tr:last-child td{border-bottom:none;}
 .cmt td:first-child{color:var(--text2);font-size:11px;width:70px;}
 
+/* TSLA BOX */
+.tsla-box{background:linear-gradient(135deg,#f0faf4,#fff);border:1px solid rgba(30,138,82,.25);border-left:4px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:12px;}
+
 /* FT */
 .ft{background:#141a2a;padding:26px 16px;text-align:center;}
 .ft p{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(255,255,255,.28);letter-spacing:.09em;line-height:2.2;}
@@ -256,17 +323,166 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
 /* ANIM */
 .fu{opacity:0;animation:fuA .5s ease forwards;}
 @keyframes fuA{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-.d1{animation-delay:.08s;}.d2{animation-delay:.16s;}.d3{animation-delay:.24s;}.d4{animation-delay:.32s;}
+.d1{animation-delay:.08s;}.d2{animation-delay:.16s;}.d3{animation-delay:.24s;}.d4{animation-delay:.32s;}.d5{animation-delay:.4s;}
 
-/* OIL BADGE */
-.oil-badge{display:inline-flex;align-items:center;gap:6px;background:var(--redbg);border:1px solid rgba(201,48,48,.25);border-radius:6px;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);font-weight:700;margin-bottom:10px;}
+/* ═══════════════════════════════════════
+   TAB 2 · 엘리트 탑 트레이더 (다크 럭셔리)
+═══════════════════════════════════════ */
+#tab2{background:var(--ink);color:var(--offwhite);min-height:100vh;}
+#tab2::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
 
-/* TSLA RESULT BOX */
-.tsla-box{background:linear-gradient(135deg,#f0faf4,#fff);border:1px solid rgba(30,138,82,.25);border-left:4px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:12px;}
-.tsla-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
-.tsla-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:.12em;text-transform:uppercase;}
-.tsla-val{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;}
-.tsla-beat{background:var(--greenbg);color:var(--green);border:1px solid rgba(30,138,82,.22);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.1em;}
+.t2-cover{padding:48px 24px 36px;border-bottom:1px solid rgba(201,168,76,.2);position:relative;text-align:center;}
+.t2-eye{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold2);letter-spacing:.3em;text-transform:uppercase;margin-bottom:20px;}
+.t2-title{font-family:'Playfair Display',serif;font-size:clamp(32px,8vw,56px);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.02em;}
+.t2-title em{color:var(--gold2);font-style:italic;display:block;}
+.t2-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.9;margin-top:16px;max-width:480px;margin-left:auto;margin-right:auto;}
+.t2-sub b{color:var(--gold3);}
+.t2-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid rgba(201,168,76,.2);border-radius:4px;overflow:hidden;margin:30px auto 0;max-width:360px;}
+.cst{padding:14px 10px;background:rgba(201,168,76,.05);text-align:center;}
+.cst-n{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold2);line-height:1;}
+.cst-l{font-family:'IBM Plex Mono',monospace;font-size:8px;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;}
+
+/* TOC */
+.toc{max-width:680px;margin:32px auto 0;padding:0 20px;}
+.toc-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold2);margin-bottom:14px;text-align:center;font-style:italic;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:32px;}
+@media(max-width:440px){.toc-grid{grid-template-columns:1fr;}}
+.toc-item{background:var(--ink2);border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:11px 12px;font-size:12px;color:var(--offwhite);display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .2s;}
+.toc-item:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.05);}
+.toc-n{font-family:'Playfair Display',serif;font-size:14px;font-weight:900;color:var(--gold2);min-width:20px;}
+
+/* T2 CONTENT */
+.t2-content{max-width:680px;margin:0 auto;padding:0 20px 80px;position:relative;z-index:1;}
+.t2-section{padding:40px 0 0;}
+.t2-sh{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(201,168,76,.2);}
+.t2-snum{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.35);line-height:1;}
+.t2-sinfo{}
+.t2-stag{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold2);letter-spacing:.22em;text-transform:uppercase;margin-bottom:3px;}
+.t2-stit{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);font-weight:700;line-height:1.2;}
+
+/* T2 CARD */
+.t2-card{background:var(--ink2);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.t2-card-gold{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.04);}
+.t2-chead{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.t2-cbody{padding:16px;}
+.t2-cbody p{font-size:13px;color:var(--offwhite);line-height:1.85;}
+.t2-cbody b{color:var(--white);font-weight:700;}
+.t2-cbody .hi{color:var(--gold2);font-weight:700;}
+
+/* T2 TRUTH */
+.t2-truth{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.22);border-left:3px solid var(--gold2);border-radius:8px;padding:18px;margin-bottom:12px;}
+.t2-truth-l{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;font-weight:600;}
+.t2-truth-t{font-family:'Playfair Display',serif;font-size:clamp(14px,4vw,16px);color:var(--white);line-height:1.75;font-style:italic;}
+.t2-truth-t em{color:var(--gold2);font-style:normal;}
+
+/* T2 MYTH FACT */
+.mvf-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+@media(max-width:440px){.mvf-grid{grid-template-columns:1fr;}}
+.mvf{border-radius:8px;padding:13px 14px;}
+.mvf-m{background:rgba(224,85,85,.07);border:1px solid rgba(224,85,85,.2);}
+.mvf-f{background:rgba(61,186,122,.07);border:1px solid rgba(61,186,122,.2);}
+.mvf-l{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px;}
+.mvf-m .mvf-l{color:#e05555;}
+.mvf-f .mvf-l{color:#3dba7a;}
+.mvf-t{font-size:12px;color:var(--offwhite);line-height:1.65;}
+.mvf-t b{color:var(--white);}
+
+/* T2 STAGE */
+.t2-stage{border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden;margin-bottom:12px;background:var(--ink2);}
+.t2-stage-h{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.07);}
+.t2-stage-hgold{background:rgba(201,168,76,.08);border-bottom-color:rgba(201,168,76,.2);}
+.t2-stage-ico{font-size:22px;width:32px;text-align:center;flex-shrink:0;}
+.t2-stage-l{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:3px;}
+.t2-stage-n{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700;}
+.t2-stage-b{padding:14px 16px;}
+.t2-stage-b p{font-size:13px;color:var(--offwhite);line-height:1.85;}
+.t2-list{list-style:none;margin-top:10px;}
+.t2-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;color:var(--offwhite);line-height:1.65;}
+.t2-list li:last-child{border-bottom:none;}
+.t2-li-d{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold2);flex-shrink:0;margin-top:4px;font-weight:600;}
+
+/* T2 RULE */
+.t2-rb{background:var(--ink3);border:1px solid rgba(201,168,76,.2);border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.t2-rbh{padding:13px 16px;background:rgba(201,168,76,.08);border-bottom:1px solid rgba(201,168,76,.15);display:flex;align-items:center;gap:8px;}
+.t2-rbt{font-family:'Playfair Display',serif;font-size:14px;color:var(--white);font-weight:700;}
+.t2-rbi{display:flex;align-items:flex-start;gap:11px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.05);}
+.t2-rbi:last-child{border-bottom:none;}
+.t2-rbk{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold2);font-weight:700;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);padding:3px 7px;border-radius:3px;flex-shrink:0;margin-top:2px;white-space:nowrap;}
+.t2-rbc{flex:1;}
+.t2-rbt2{font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.t2-rbd{font-size:11px;color:rgba(255,255,255,.5);line-height:1.6;}
+
+/* T2 LEVEL */
+.t2-lv-grid{display:grid;gap:8px;margin-bottom:12px;}
+.t2-lv{background:var(--ink2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:13px 14px;display:flex;align-items:center;gap:12px;}
+.t2-lv-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;flex-shrink:0;text-align:center;min-width:58px;}
+.lv-nov{background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);}
+.lv-mid{background:rgba(74,143,224,.1);color:#4a8fe0;border:1px solid rgba(74,143,224,.2);}
+.lv-adv{background:rgba(201,168,76,.1);color:var(--gold2);border:1px solid rgba(201,168,76,.2);}
+.lv-eli{background:rgba(61,186,122,.1);color:#3dba7a;border:1px solid rgba(61,186,122,.2);}
+.t2-lv-i{flex:1;}
+.t2-lv-n{font-size:12px;font-weight:700;color:var(--white);}
+.t2-lv-d{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
+.t2-lv-p{font-family:'IBM Plex Mono',monospace;text-align:right;flex-shrink:0;}
+.t2-lv-pct{font-size:15px;font-weight:700;}
+.t2-lv-r{font-size:9px;color:rgba(255,255,255,.35);margin-top:1px;}
+
+/* T2 ROUTINE */
+.t2-rt{background:var(--ink2);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:11px 13px;display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;}
+.t2-rtt{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold2);font-weight:600;width:50px;flex-shrink:0;margin-top:1px;}
+.t2-rti{font-size:12px;font-weight:700;color:var(--white);}
+.t2-rtd{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;line-height:1.5;}
+
+/* T2 FORBIDDEN */
+.t2-fb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+@media(max-width:440px){.t2-fb-grid{grid-template-columns:1fr;}}
+.t2-fb{background:rgba(224,85,85,.05);border:1px solid rgba(224,85,85,.15);border-radius:8px;padding:12px 13px;display:flex;align-items:flex-start;gap:9px;}
+.t2-fbi{font-size:14px;flex-shrink:0;margin-top:1px;}
+.t2-fbt{font-size:12px;font-weight:700;color:#e05555;margin-bottom:3px;}
+.t2-fbd{font-size:11px;color:rgba(255,255,255,.4);line-height:1.55;}
+
+/* T2 ROADMAP */
+.t2-rm{position:relative;padding-left:26px;margin-bottom:12px;}
+.t2-rm::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--gold2),rgba(201,168,76,.1));}
+.t2-rmi{position:relative;margin-bottom:22px;}
+.t2-rmi:last-child{margin-bottom:0;}
+.t2-rmd{position:absolute;left:-22px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--gold2);border:2px solid var(--ink);box-shadow:0 0 0 3px rgba(201,168,76,.18);}
+.t2-rmy{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold2);letter-spacing:.14em;font-weight:600;text-transform:uppercase;margin-bottom:4px;}
+.t2-rmt{font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.t2-rmd2{font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;}
+.t2-rmtg{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3dba7a;background:rgba(61,186,122,.1);border:1px solid rgba(61,186,122,.2);padding:2px 7px;border-radius:3px;margin-top:5px;font-weight:600;}
+
+/* T2 GOLDEN */
+.t2-gr{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start;margin-bottom:8px;}
+.t2-gn{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:rgba(201,168,76,.3);line-height:1;flex-shrink:0;width:32px;}
+.t2-gt{font-size:12px;font-weight:700;color:var(--gold3);margin-bottom:4px;}
+.t2-gd{font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;}
+
+/* T2 CHECK */
+.t2-chk{list-style:none;margin-bottom:12px;}
+.t2-chk li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;color:var(--offwhite);line-height:1.65;}
+.t2-chk li:last-child{border-bottom:none;}
+.t2-ci{font-size:14px;flex-shrink:0;margin-top:1px;width:18px;text-align:center;}
+.chkd{color:#3dba7a;}.chkt{color:rgba(255,255,255,.2);}
+
+/* T2 GRAND VERDICT */
+.t2-gv{background:linear-gradient(135deg,rgba(201,168,76,.08),var(--ink2));border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:28px 20px;margin-top:36px;text-align:center;position:relative;overflow:hidden;}
+.t2-gv::before{content:'"';position:absolute;top:-20px;left:14px;font-family:'Playfair Display',serif;font-size:160px;color:rgba(201,168,76,.05);line-height:1;}
+.t2-gvl{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold2);letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px;font-weight:600;}
+.t2-gvt{font-family:'Playfair Display',serif;font-size:clamp(14px,4vw,18px);color:var(--white);line-height:1.8;font-style:italic;position:relative;z-index:1;}
+.t2-gvt em{color:var(--gold2);font-style:normal;}
+.t2-gva{font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.12em;margin-top:18px;}
+
+/* T2 FT */
+.t2-ft{background:var(--ink2);border-top:1px solid rgba(201,168,76,.2);padding:24px 20px;text-align:center;}
+.t2-ft p{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;line-height:2.2;}
+@supports(padding:env(safe-area-inset-bottom)){.t2-ft{padding-bottom:calc(24px + env(safe-area-inset-bottom));}}
+
+/* T2 MINDSET */
+.t2-mc{border-radius:8px;padding:14px;background:var(--ink2);border:1px solid rgba(255,255,255,.07);}
+.t2-mci{font-size:22px;margin-bottom:8px;}
+.t2-mct{font-size:12px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.t2-mcd{font-size:11px;color:rgba(255,255,255,.45);line-height:1.65;}
 </style>
 </head>
 <body>
@@ -285,420 +501,1007 @@ body{background:#edf0f5;color:var(--text);font-family:'Noto Sans KR',sans-serif;
   </div>
 </header>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ttrack">
-    <div class="ti"><span class="ts">S&P500</span><span class="tv">7,108</span><span class="td">▼-0.41%</span></div>
-    <div class="ti"><span class="ts">NASDAQ</span><span class="tv">24,438</span><span class="td">▼-0.89%</span></div>
-    <div class="ti"><span class="ts">DOW</span><span class="tv">49,310</span><span class="td">▼-0.36%</span></div>
-    <div class="ti"><span class="ts">KOSPI</span><span class="tv">6,476</span><span class="tu">▲+0.46%</span></div>
-    <div class="ti"><span class="ts">WTI</span><span class="tv">$96.50</span><span class="td">▲+4% 급등</span></div>
-    <div class="ti"><span class="ts">BRENT</span><span class="tv">$105</span><span class="td">▲+3.5%</span></div>
-    <div class="ti"><span class="ts">GOLD</span><span class="tv">$4,820</span><span class="tu">▲역대최고</span></div>
-    <div class="ti"><span class="ts">TSLA</span><span class="tv">EPS $0.41</span><span class="tu">▲어닝비트</span></div>
-    <div class="ti"><span class="ts">TXN</span><span class="tv">+18%</span><span class="tu">▲최고급등</span></div>
-    <div class="ti"><span class="ts">IBM</span><span class="tv">-8%</span><span class="td">▼가이던스 실망</span></div>
-    <div class="ti"><span class="ts">NOW</span><span class="tv">-18%</span><span class="td">▼쇼크</span></div>
-    <div class="ti"><span class="ts">SK하이닉스</span><span class="tv">37.6조</span><span class="tu">▲사상최대</span></div>
-    <!-- dup -->
-    <div class="ti"><span class="ts">S&P500</span><span class="tv">7,108</span><span class="td">▼-0.41%</span></div>
-    <div class="ti"><span class="ts">NASDAQ</span><span class="tv">24,438</span><span class="td">▼-0.89%</span></div>
-    <div class="ti"><span class="ts">DOW</span><span class="tv">49,310</span><span class="td">▼-0.36%</span></div>
-    <div class="ti"><span class="ts">KOSPI</span><span class="tv">6,476</span><span class="tu">▲+0.46%</span></div>
-    <div class="ti"><span class="ts">WTI</span><span class="tv">$96.50</span><span class="td">▲+4% 급등</span></div>
-    <div class="ti"><span class="ts">BRENT</span><span class="tv">$105</span><span class="td">▲+3.5%</span></div>
-    <div class="ti"><span class="ts">GOLD</span><span class="tv">$4,820</span><span class="tu">▲역대최고</span></div>
-    <div class="ti"><span class="ts">TSLA</span><span class="tv">EPS $0.41</span><span class="tu">▲어닝비트</span></div>
-    <div class="ti"><span class="ts">TXN</span><span class="tv">+18%</span><span class="tu">▲최고급등</span></div>
-    <div class="ti"><span class="ts">IBM</span><span class="tv">-8%</span><span class="td">▼가이던스 실망</span></div>
-    <div class="ti"><span class="ts">NOW</span><span class="tv">-18%</span><span class="td">▼쇼크</span></div>
-    <div class="ti"><span class="ts">SK하이닉스</span><span class="tv">37.6조</span><span class="tu">▲사상최대</span></div>
+<!-- ═══ TAB BAR ═══ -->
+<div class="tab-bar">
+  <div class="tab-bar-in">
+    <button class="tab-btn active" onclick="switchTab(1)">
+      <span class="tab-icon">📊</span> Today 투자가이드
+      <span class="tab-desc">오늘의 시장 정보</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab(2)">
+      <span class="tab-icon">👑</span> 엘리트 탑 트레이더
+      <span class="tab-desc">상위 3% 가이드</span>
+    </button>
   </div>
 </div>
 
-<!-- VISITOR -->
-<div class="vcbar">
-  <div class="vcin">
-    <div class="vcl">
-      <div class="vci"><div class="vcico">👁️</div><div><div class="vclbl">누적 방문자</div><div class="vcnum" id="vc-total"><span class="vcld">···</span></div></div></div>
-      <div class="vcsep"></div>
-      <div class="vci"><div class="vcico">📅</div><div><div class="vclbl">오늘 방문자</div><div class="vcnum" id="vc-today"><span class="vcld">···</span></div></div></div>
+<!-- ══════════════════════════════
+     TAB 1 · TODAY 투자가이드
+══════════════════════════════ -->
+<div class="panel active" id="tab1">
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ttrack">
+      <div class="ti"><span class="ts">S&P500</span><span class="tv">7,108</span><span class="td">▼-0.41%</span></div>
+      <div class="ti"><span class="ts">NASDAQ</span><span class="tv">24,438</span><span class="td">▼-0.89%</span></div>
+      <div class="ti"><span class="ts">KOSPI</span><span class="tv">6,476</span><span class="tu">▲+0.46%</span></div>
+      <div class="ti"><span class="ts">KOSDAQ</span><span class="tv">강세</span><span class="tu">▲소부장</span></div>
+      <div class="ti"><span class="ts">WTI</span><span class="tv">$96.50</span><span class="td">▲+4%</span></div>
+      <div class="ti"><span class="ts">BRENT</span><span class="tv">$105</span><span class="td">▲+3.5%</span></div>
+      <div class="ti"><span class="ts">GOLD</span><span class="tv">$4,820</span><span class="tu">▲최고</span></div>
+      <div class="ti"><span class="ts">TSLA</span><span class="tv">EPS$0.41</span><span class="tu">▲비트</span></div>
+      <div class="ti"><span class="ts">TXN</span><span class="tv">+18%</span><span class="tu">▲최고급등</span></div>
+      <div class="ti"><span class="ts">NOW</span><span class="tv">-18%</span><span class="td">▼쇼크</span></div>
+      <div class="ti"><span class="ts">IBM</span><span class="tv">-8%</span><span class="td">▼실망</span></div>
+      <div class="ti"><span class="ts">F&G</span><span class="tv">70</span><span class="tu">탐욕</span></div>
+      <!-- dup -->
+      <div class="ti"><span class="ts">S&P500</span><span class="tv">7,108</span><span class="td">▼-0.41%</span></div>
+      <div class="ti"><span class="ts">NASDAQ</span><span class="tv">24,438</span><span class="td">▼-0.89%</span></div>
+      <div class="ti"><span class="ts">KOSPI</span><span class="tv">6,476</span><span class="tu">▲+0.46%</span></div>
+      <div class="ti"><span class="ts">KOSDAQ</span><span class="tv">강세</span><span class="tu">▲소부장</span></div>
+      <div class="ti"><span class="ts">WTI</span><span class="tv">$96.50</span><span class="td">▲+4%</span></div>
+      <div class="ti"><span class="ts">BRENT</span><span class="tv">$105</span><span class="td">▲+3.5%</span></div>
+      <div class="ti"><span class="ts">GOLD</span><span class="tv">$4,820</span><span class="tu">▲최고</span></div>
+      <div class="ti"><span class="ts">TSLA</span><span class="tv">EPS$0.41</span><span class="tu">▲비트</span></div>
+      <div class="ti"><span class="ts">TXN</span><span class="tv">+18%</span><span class="tu">▲최고급등</span></div>
+      <div class="ti"><span class="ts">NOW</span><span class="tv">-18%</span><span class="td">▼쇼크</span></div>
+      <div class="ti"><span class="ts">IBM</span><span class="tv">-8%</span><span class="td">▼실망</span></div>
+      <div class="ti"><span class="ts">F&G</span><span class="tv">70</span><span class="tu">탐욕</span></div>
     </div>
-    <div class="vcbadge"><div class="vcdot"></div>LIVE TRACKING</div>
   </div>
-</div>
 
-<!-- HERO -->
-<div class="hero fu">
-  <div class="heroin">
-    <div class="htop">
-      <div class="hleft">
-        <div class="hey">전문가 투자가이드 · 극소수 고수익 트레이더 관점</div>
-        <h1 class="hh1">Today<br><em>투자가이드</em></h1>
-        <div class="hbadge">📅 2026년 4월 24일 금요일 &nbsp;|&nbsp; DAY 6</div>
+  <!-- VISITOR -->
+  <div class="vcbar">
+    <div class="vcin">
+      <div class="vcl">
+        <div class="vci"><div class="vcico">👁️</div><div><div class="vclbl">누적 방문자</div><div class="vcnum" id="vc-total"><span class="vcld">···</span></div></div></div>
+        <div class="vcsep"></div>
+        <div class="vci"><div class="vcico">📅</div><div><div class="vclbl">오늘 방문자</div><div class="vcnum" id="vc-today"><span class="vcld">···</span></div></div></div>
       </div>
-      <div class="qbox">
-        <div class="qlbl">오늘의 명언</div>
-        <div class="qtxt">주가는 단기에는 인기투표 기계, 장기에는 체중계다.</div>
-        <div class="qauth">— Benjamin Graham</div>
+      <div class="vcbadge"><div class="vcdot"></div>LIVE TRACKING</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero fu">
+    <div class="heroin">
+      <div class="htop">
+        <div class="hleft">
+          <div class="hey">전문가 투자가이드 · 극소수 고수익 트레이더 관점</div>
+          <h1 class="hh1">Today<br><em>투자가이드</em></h1>
+          <div class="hbadge">📅 2026년 4월 24일 금요일 &nbsp;|&nbsp; DAY 6</div>
+        </div>
+        <div class="qbox">
+          <div class="qlbl">오늘의 명언</div>
+          <div class="qtxt">주가는 단기에는 인기투표 기계, 장기에는 체중계다.</div>
+          <div class="qauth">— Benjamin Graham</div>
+        </div>
+      </div>
+      <div class="hsub">
+        이란 협상대표 사임 → 유가 <b>WTI $96·브렌트 $105 급등</b> · TSLA <span class="pos">EPS +11% 비트</span><br>
+        <b>⚠ 오늘 PCE 물가 + 미시간 소비심리 — 이번 주 마지막 방아쇠</b>
+      </div>
+      <div class="htags">
+        <span class="ht htr">🔴 유가 $105 재진입</span>
+        <span class="ht htg">🟢 TSLA 어닝 비트</span>
+        <span class="ht hty">🟡 PCE 오늘 발표</span>
+        <span class="ht hto">🟠 IBM·NOW 급락</span>
       </div>
     </div>
-    <div class="hsub">
-      이란 협상대표 사임 → 유가 <b>WTI $96·브렌트 $105 급등</b> · TSLA <span class="pos">EPS +11% 비트</span> · IBM·NOW 급락<br>
-      <b>⚠ 오늘 PCE 물가 + 미시간 소비심리 발표 — 이번 주 마지막 방아쇠</b>
+  </div>
+
+  <div class="wrap">
+
+  <!-- ████ 섹션 1 · Today 증시 정보 (흰색) ████ -->
+  <div class="pdiv pd1"></div>
+  <div class="part p1 fu d1">
+    <div class="plbl">
+      <span class="pnum n1">섹션 01</span>
+      <span class="ptit">Today 증시 정보 · 수급 분석</span>
+      <div class="pline"></div>
     </div>
-    <div class="htags">
-      <span class="ht htr">🔴 유가 $105 재진입</span>
-      <span class="ht htg">🟢 TSLA 어닝 비트</span>
-      <span class="ht hty">🟡 PCE 오늘 발표</span>
-      <span class="ht hto">🟠 IBM·NOW 급락</span>
-      <span class="ht htb">🔵 빅테크 다음주</span>
+
+    <!-- 지수 카드 -->
+    <div class="mg">
+      <div class="mc mdn"><div class="msym">S&P 500</div><div class="mval">7,108</div><div class="mchg dn">▼ -0.41%</div><div class="mlbl">장중 신고점 후 반락</div></div>
+      <div class="mc mdn"><div class="msym">NASDAQ</div><div class="mval">24,438</div><div class="mchg dn">▼ -0.89%</div><div class="mlbl">소프트웨어 급락 주도</div></div>
+      <div class="mc mup"><div class="msym">KOSPI</div><div class="mval">6,476</div><div class="mchg up">▲ +0.46%</div><div class="mlbl">장중 6,538 신고점</div></div>
+      <div class="mc mdn"><div class="msym">WTI 유가</div><div class="mval">$96.50</div><div class="mchg dn">▲ +4% 급등</div><div class="mlbl">이란 재긴장 반영</div></div>
+    </div>
+
+    <!-- 코스피 수급 분석 -->
+    <div class="flow-sec">
+      <div class="flow-title">🇰🇷 코스피 · 4월 누적 수급 (1~23일)</div>
+      <div class="flow-item">
+        <div class="flow-who">🌍 외국인</div>
+        <div class="flow-track"><div class="flow-fill" style="width:75%;background:var(--green);"></div></div>
+        <div class="flow-val" style="color:var(--green);">+5.3조 매수</div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-who">🏢 기관</div>
+        <div class="flow-track"><div class="flow-fill" style="width:35%;background:var(--blue);"></div></div>
+        <div class="flow-val" style="color:var(--blue);">+1.2조 매수</div>
+      </div>
+      <div class="flow-item" style="margin-bottom:0;">
+        <div class="flow-who">👤 개인</div>
+        <div class="flow-track"><div class="flow-fill" style="width:90%;background:var(--red);"></div></div>
+        <div class="flow-val" style="color:var(--red);">-17.6조 매도</div>
+      </div>
+
+      <div class="stock-flow-grid">
+        <div class="sf-card">
+          <div class="sf-name">SK하이닉스 000660</div>
+          <div class="sf-row"><span class="sf-who">🌍 외국인</span><span class="sf-val" style="color:var(--green);">+2.2조</span></div>
+          <div class="sf-row"><span class="sf-who">👤 개인</span><span class="sf-val" style="color:var(--red);">-3.9조</span></div>
+          <div class="sf-row" style="border:none;"><span class="sf-who">흐름</span><span class="sf-val" style="color:var(--gold);">지속 매집</span></div>
+        </div>
+        <div class="sf-card">
+          <div class="sf-name">삼성전자 005930</div>
+          <div class="sf-row"><span class="sf-who">🌍 외국인</span><span class="sf-val" style="color:var(--green);">+1.4조</span></div>
+          <div class="sf-row"><span class="sf-who">👤 개인</span><span class="sf-val" style="color:var(--red);">-7.2조</span></div>
+          <div class="sf-row" style="border:none;"><span class="sf-who">흐름</span><span class="sf-val" style="color:var(--text2);">외인 귀환</span></div>
+        </div>
+        <div class="sf-card">
+          <div class="sf-name">한화에어로 012450</div>
+          <div class="sf-row"><span class="sf-who">🌍 외국인</span><span class="sf-val" style="color:var(--green);">+5,200억</span></div>
+          <div class="sf-row"><span class="sf-who">🏢 기관</span><span class="sf-val" style="color:var(--green);">+2,100억</span></div>
+          <div class="sf-row" style="border:none;"><span class="sf-who">흐름</span><span class="sf-val" style="color:var(--gold);">외기관 동반</span></div>
+        </div>
+        <div class="sf-card">
+          <div class="sf-name">HD현대중공업 009540</div>
+          <div class="sf-row"><span class="sf-who">🌍 외국인</span><span class="sf-val" style="color:var(--green);">+3,800억</span></div>
+          <div class="sf-row"><span class="sf-who">🏢 기관</span><span class="sf-val" style="color:var(--green);">+1,400억</span></div>
+          <div class="sf-row" style="border:none;"><span class="sf-who">흐름</span><span class="sf-val" style="color:var(--gold);">방산 강세</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 코스닥 수급 -->
+    <div class="flow-sec">
+      <div class="flow-title">🇰🇷 코스닥 · 4월 누적 수급</div>
+      <div class="flow-item">
+        <div class="flow-who">🌍 외국인</div>
+        <div class="flow-track"><div class="flow-fill" style="width:60%;background:var(--green);"></div></div>
+        <div class="flow-val" style="color:var(--green);">+1.8조 매수</div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-who">🏢 기관</div>
+        <div class="flow-track"><div class="flow-fill" style="width:25%;background:var(--blue);"></div></div>
+        <div class="flow-val" style="color:var(--blue);">+3,200억</div>
+      </div>
+      <div class="flow-item" style="margin-bottom:0;">
+        <div class="flow-who">👤 개인</div>
+        <div class="flow-track"><div class="flow-fill" style="width:55%;background:var(--red);"></div></div>
+        <div class="flow-val" style="color:var(--red);">-2.1조 매도</div>
+      </div>
+      <p style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.65;"><b style="color:var(--text);">외국인 집중 섹터:</b> 반도체 소부장 · 로봇 · 2차전지 회복주. <b style="color:var(--text);">주도주:</b> 레인보우로보틱스, HPSP, 두산테스나, 에코프로비엠.</p>
+    </div>
+
+    <!-- 종합 신호 -->
+    <div class="signal-grid">
+      <div class="sig-card">
+        <div class="sig-ico">😤</div>
+        <div class="sig-lbl">공포탐욕지수</div>
+        <div class="sig-val" style="color:#d06020;">70 · 탐욕</div>
+        <div class="sig-sub">과열 구간 경계</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-ico">📊</div>
+        <div class="sig-lbl">VIX 변동성</div>
+        <div class="sig-val" style="color:var(--gold);">18.84</div>
+        <div class="sig-sub">경계 유지</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-ico">🏦</div>
+        <div class="sig-lbl">외국인 수급</div>
+        <div class="sig-val" style="color:var(--green);">+5.3조 귀환</div>
+        <div class="sig-sub">3월 매도 후 복귀</div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="wrap">
-
-<!-- ████ PART 01 핵심 증시 정보/뉴스 · 흰색 ████ -->
-<div class="pdiv pd1"></div>
-<div class="part p1 fu d1">
-  <div class="plbl">
-    <span class="pnum n1">PART 01</span>
-    <span class="ptit">핵심 증시 정보 / 뉴스</span>
-    <div class="pline"></div>
-  </div>
-
-  <!-- 지수 카드 -->
-  <div class="mg">
-    <div class="mc mdn"><div class="msym">S&P 500</div><div class="mval">7,108</div><div class="mchg dn">▼ -0.41%</div><div class="mlbl">장중 신고점 후 하락 반전</div></div>
-    <div class="mc mdn"><div class="msym">NASDAQ</div><div class="mval">24,438</div><div class="mchg dn">▼ -0.89%</div><div class="mlbl">소프트웨어 급락 주도</div></div>
-    <div class="mc mup"><div class="msym">KOSPI</div><div class="mval">6,476</div><div class="mchg up">▲ +0.46%</div><div class="mlbl">장중 6,538 신고점 경신</div></div>
-    <div class="mc mdn"><div class="msym">WTI 유가</div><div class="mval">$96.50</div><div class="mchg dn">▲ +4% 급등</div><div class="mlbl">이란 협상 붕괴 → 재급등</div></div>
-  </div>
-
-  <!-- 긴급: 이란 협상 붕괴 -->
-  <div class="al al-r">
-    <div class="alico">🚨</div>
-    <div>
-      <div class="all all-r">긴급 · 이란 협상 붕괴</div>
-      <div class="alt"><b>이란 의회의장 대표단 협상팀 사임</b> — 장중 유가 폭등 직격탄. <b>WTI $96.50(+4%), 브렌트 $105(+3.5%)</b>로 급반등. 이스라엘 언론 보도로 협상 사실상 교착. 유가 $110 경고 시나리오 재부상.</div>
+  <!-- ████ 섹션 2 · Today 핵심 뉴스 (분홍) ████ -->
+  <div class="pdiv pd2"></div>
+  <div class="part p2 fu d2">
+    <div class="plbl">
+      <span class="pnum n2">섹션 02</span>
+      <span class="ptit">Today 핵심 뉴스</span>
+      <div class="pline"></div>
     </div>
-  </div>
 
-  <!-- TSLA 어닝 결과 -->
-  <div class="tsla-box">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+    <!-- 긴급 이란 -->
+    <div class="al al-r">
+      <div class="alico">🚨</div>
       <div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:4px;">✅ TSLA Q1 2026 어닝 — 비트</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--text);">테슬라 EPS $0.41 · 컨센 +11% 초과</div>
+        <div class="all all-r">긴급 · 이란 협상 붕괴</div>
+        <div class="alt"><b>이란 의회의장 협상팀 사임</b> — 이스라엘 언론 보도. <b>WTI $96.50(+4%), 브렌트 $105(+3.5%)</b> 급반등. 트럼프 "휴전 연장" 선언에도 실질 협상 교착. 유가 $110 경고 재부상.</div>
       </div>
-      <span class="tsla-beat">EPS BEAT +11%</span>
     </div>
-    <div class="tw">
-      <table class="tbl" style="background:transparent;">
-        <thead><tr><th>항목</th><th>실제</th><th>컨센서스</th><th>결과</th></tr></thead>
-        <tbody>
-          <tr><td><b>EPS</b></td><td class="ut mn2">$0.41</td><td class="mn2" style="color:var(--text2);">$0.37</td><td class="ut">+11% 비트 ✅</td></tr>
-          <tr><td><b>매출</b></td><td class="mn2" style="color:var(--text);">$22.39B</td><td class="mn2" style="color:var(--text2);">$22.64B</td><td class="dt2">소폭 미스 ⚠</td></tr>
-          <tr><td><b>자동차마진</b></td><td class="ut mn2">19.2%</td><td class="mn2" style="color:var(--text2);">~17%</td><td class="ut">개선 ✅</td></tr>
-          <tr><td><b>에너지마진</b></td><td class="ut mn2">39.5%</td><td class="mn2" style="color:var(--text2);">—</td><td class="ut">역대 최고 ✅</td></tr>
-          <tr><td><b>CAPEX 2026</b></td><td class="dt2 mn2">$25B+</td><td class="mn2" style="color:var(--text2);">$20B</td><td class="dt2">$5B 상향 ⚠</td></tr>
-          <tr><td><b>잉여현금흐름</b></td><td class="dt2 mn2">2026 마이너스</td><td class="mn2" style="color:var(--text2);">양전환 기대</td><td class="dt2">부담 요인 ⚠</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="margin-top:10px;font-size:12px;color:var(--text2);line-height:1.7;padding-top:10px;border-top:1px solid rgba(30,138,82,.15);">
-      📌 <b style="color:var(--text);">결론:</b> EPS 비트, 자동차 마진 개선으로 초반 +4% 급등 → CAPEX $5B 상향 발표로 장외 상승분 반납. <b>"미래 투자는 좋으나, 지금 현금흐름이 마이너스"</b> — 장기 성장주 vs 단기 부담 논란.
-    </div>
-  </div>
 
-  <!-- 어닝 명암 -->
-  <div class="card">
-    <div class="ch"><span class="tg ty">🟡 어닝 명암</span><span class="ct">어제(4/23) 발표 — 극단적 명암 교차</span></div>
-    <div class="cb" style="padding:0;">
+    <!-- TSLA 어닝 결과 -->
+    <div class="tsla-box">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:4px;">✅ TSLA Q1 어닝 — 비트</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:15px;color:var(--text);">테슬라 EPS $0.41 · 컨센 +11% 초과</div>
+        </div>
+        <span style="background:var(--greenbg);color:var(--green);border:1px solid rgba(30,138,82,.22);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.1em;">EPS BEAT +11%</span>
+      </div>
       <div class="tw">
-        <table class="tbl">
-          <thead><tr><th>종목</th><th>결과</th><th>주가반응</th><th>핵심 포인트</th></tr></thead>
+        <table class="tbl" style="background:transparent;">
+          <thead><tr><th>항목</th><th>실제</th><th>컨센</th><th>결과</th></tr></thead>
           <tbody>
-            <tr>
-              <td><div class="sy" style="color:#d06020;">TXN 🚀</div><div class="sb2">텍사스인스트루먼트</div></td>
-              <td class="ut">✅ 대폭 비트</td>
-              <td class="ut" style="font-size:16px;font-weight:800;">+18%</td>
-              <td style="font-size:11px;">2026년 이후 최고 1일 상승. AI·산업 반도체 수요 폭발 확인.</td>
-            </tr>
-            <tr>
-              <td><div class="sy" style="color:var(--green);">SK하이닉스 🏆</div><div class="sb2">영업이익 37.6조 사상최대</div></td>
-              <td class="ut">✅ 사상최대</td>
-              <td class="mn2" style="color:var(--text2);">소폭 변동</td>
-              <td style="font-size:11px;">매출 52.6조 (+198% YoY). OPM 72%. 이미 주가 선반영.</td>
-            </tr>
-            <tr>
-              <td><div class="sy" style="color:var(--red);">IBM ⚠</div><div class="sb2">IBM</div></td>
-              <td class="ut">✅ EPS·매출 비트</td>
-              <td class="dt2" style="font-size:16px;font-weight:800;">-8%</td>
-              <td style="font-size:11px;">비트에도 연간 가이던스 유지 → 기대치 미달. "Sell the news".</td>
-            </tr>
-            <tr>
-              <td><div class="sy" style="color:var(--red);">NOW 💥</div><div class="sb2">ServiceNow</div></td>
-              <td class="dt2">❌ 구독성장 둔화</td>
-              <td class="dt2" style="font-size:16px;font-weight:800;">-18%</td>
-              <td style="font-size:11px;">중동 전쟁이 구독매출 성장 저해. 고PER AI 소프트주 경보.</td>
-            </tr>
-            <tr>
-              <td><div class="sy" style="color:var(--green);">GEV ✅</div><div class="sb2">GE Vernova</div></td>
-              <td class="ut">✅ 어닝+매출 비트</td>
-              <td class="ut" style="font-size:16px;font-weight:800;">+8%</td>
-              <td style="font-size:11px;">가이던스 상향. 데이터센터 전력 수요 폭증 직접 수혜.</td>
-            </tr>
-            <tr>
-              <td><div class="sy" style="color:var(--green);">AXP ✅</div><div class="sb2">아메리칸익스프레스</div></td>
-              <td class="ut">✅ 소비 강세</td>
-              <td class="ut">+상승</td>
-              <td style="font-size:11px;">미국 소비 회복력 재확인. 프리미엄 소비층 견조.</td>
-            </tr>
+            <tr><td><b>EPS</b></td><td class="ut mn2">$0.41</td><td class="mn2" style="color:var(--text2);">$0.37</td><td class="ut">+11% ✅</td></tr>
+            <tr><td><b>매출</b></td><td class="mn2" style="color:var(--text);">$22.39B</td><td class="mn2" style="color:var(--text2);">$22.64B</td><td class="dt2">소폭 미스</td></tr>
+            <tr><td><b>자동차마진</b></td><td class="ut mn2">19.2%</td><td class="mn2" style="color:var(--text2);">~17%</td><td class="ut">개선 ✅</td></tr>
+            <tr><td><b>CAPEX 2026</b></td><td class="dt2 mn2">$25B+</td><td class="mn2" style="color:var(--text2);">$20B</td><td class="dt2">$5B 상향 ⚠</td></tr>
+            <tr><td><b>FCF</b></td><td class="dt2 mn2">2026 마이너스</td><td class="mn2" style="color:var(--text2);">양전환</td><td class="dt2">부담 ⚠</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-  </div>
 
-  <!-- 핵심 뉴스 2개 -->
-  <div class="g2">
-    <div class="card">
-      <div class="ch"><span class="tg tgr">🟢 한국 호재</span><span class="ct">KOSPI 6,476 · 방산·조선 독주</span></div>
-      <div class="cb">
-        <p>KOSPI 장중 <b>6,538.72 사상최고</b> 경신. HD현대중공업 <span class="up"><b>+11.28%</b></span> — 스웨덴 쇄빙선 첫 수출. 한화에어로스페이스 <b>Northrop Grumman</b>과 파트너십. LG–엔비디아 AI 협력 확대. 미국이 빠져도 한국은 독주.</p>
+    <!-- 어닝 명암 -->
+    <div class="card c2">
+      <div class="ch"><span class="tg ty">🟡 어닝 명암</span><span class="ct">어제(4/23) 발표 — 극단적 명암</span></div>
+      <div class="cb" style="padding:0;">
+        <div class="tw">
+          <table class="tbl">
+            <thead><tr><th>종목</th><th>결과</th><th>주가</th><th>핵심</th></tr></thead>
+            <tbody>
+              <tr><td><div class="sy" style="color:#d06020;">TXN 🚀</div><div class="sb2">텍사스인스트</div></td><td class="ut">✅ 대폭비트</td><td class="ut" style="font-size:15px;font-weight:800;">+18%</td><td style="font-size:11px;">2026 이후 최고 1일 상승</td></tr>
+              <tr><td><div class="sy ut">GEV ✅</div><div class="sb2">GE Vernova</div></td><td class="ut">✅ 가이던스↑</td><td class="ut" style="font-size:15px;font-weight:800;">+8%</td><td style="font-size:11px;">데이터센터 전력 폭증</td></tr>
+              <tr><td><div class="sy" style="color:var(--red);">IBM ⚠</div><div class="sb2">IBM</div></td><td class="ut">✅ 비트</td><td class="dt2" style="font-size:15px;font-weight:800;">-8%</td><td style="font-size:11px;">가이던스 유지 실망</td></tr>
+              <tr><td><div class="sy" style="color:var(--red);">NOW 💥</div><div class="sb2">ServiceNow</div></td><td class="dt2">❌ 성장 둔화</td><td class="dt2" style="font-size:15px;font-weight:800;">-18%</td><td style="font-size:11px;">중동전 구독성장 저해</td></tr>
+              <tr><td><div class="sy ut">AXP ✅</div><div class="sb2">아메리칸익스</div></td><td class="ut">✅ 소비강세</td><td class="ut">+상승</td><td style="font-size:11px;">프리미엄 소비 견조</td></tr>
+              <tr><td><div class="sy" style="color:var(--green);">SK하이닉스 🏆</div><div class="sb2">영업이익 37.6조</div></td><td class="ut">✅ 사상최대</td><td class="mn2" style="color:var(--text2);">소폭 변동</td><td style="font-size:11px;">매출 52.6조 · OPM 72%</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="tg tgr">🟢 AI 호재</span><span class="ct">구글 TPU 8 + 엔비디아 Vera Rubin</span></div>
-      <div class="cb">
-        <p>구글이 <b>TPU 8 AI칩</b> 출시 + 엔비디아 <b>Vera Rubin NVL72</b> 플랫폼 제공 발표. 엔비디아 <span class="up">+1.3%($202.50)</span> 프리마켓 상승. 알파벳 2026 CAPEX <b>$175~185B</b> 유지. AI 인프라 투자 경쟁 전혀 꺾이지 않음.</p>
+
+    <!-- 기타 중요 뉴스 -->
+    <div class="g2">
+      <div class="card c2">
+        <div class="ch"><span class="tg tgr">🟢 한국 호재</span><span class="ct">방산·조선 독주</span></div>
+        <div class="cb">
+          <p>HD현대중공업 <span class="up"><b>+11.28%</b></span> — 스웨덴 쇄빙선 첫 수출. 한화에어로 <b>Northrop Grumman 파트너십</b>. 두산에너빌리티 +5.69%. LG-엔비디아 AI 협력 확대. <b>미국이 빠져도 한국은 독주.</b></p>
+        </div>
+      </div>
+      <div class="card c2">
+        <div class="ch"><span class="tg tb">🔵 AI 호재</span><span class="ct">구글 TPU8 + NVDA</span></div>
+        <div class="cb">
+          <p>구글 <b>TPU 8 AI칩</b> 출시 + 엔비디아 <b>Vera Rubin NVL72</b> 플랫폼 제공. NVDA <span class="up">+1.3% ($202.50)</span> 프리마켓. 알파벳 2026 CAPEX <b>$175~185B</b> 유지. AI 인프라 경쟁 전혀 안 꺾임.</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- 오늘 PCE -->
-  <div class="al al-y">
-    <div class="alico">📊</div>
-    <div>
-      <div class="all all-y">오늘 최대 이벤트 · 10:00 AM ET</div>
-      <div class="alt"><b>PCE 물가지수 + 미시간 소비자심리 최종치</b> 오늘 발표. 연준이 가장 주목하는 물가 지표. 예상 하회 시 → 금리 동결 + 성장주 반등. 예상 상회 시 → 고PER 전종목 추가 급락. <b>유가 $96 상황에서 PCE까지 높으면 최악 조합.</b></div>
-    </div>
-  </div>
-</div>
-
-<!-- ████ PART 02 핵심 섹터/종목 · 분홍 ████ -->
-<div class="pdiv pd2"></div>
-<div class="part p2 fu d2">
-  <div class="plbl">
-    <span class="pnum n2">PART 02</span>
-    <span class="ptit">핵심 섹터 / 핵심 종목</span>
-    <div class="pline"></div>
-  </div>
-
-  <!-- 섹터 순위 -->
-  <div class="card c2">
-    <div class="ch"><span class="tg tpk">SECTOR RANK</span><span class="ct">오늘 기준 섹터 우선순위 — 유가 급등 반영</span></div>
-    <div>
-      <div class="sr"><div class="srk">1</div><div class="srico">💡</div><div class="srif"><div class="srn">반도체 / AI 인프라</div><div class="srd">SK하이닉스 37.6조 사상최대 · TXN +18% · NVDA Vera Rubin 수요 지속</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:95%;background:#1e8a52;"></div></div><div class="hlbl">🔥🔥🔥 최선호</div></div></div>
-      <div class="sr"><div class="srk">2</div><div class="srico">🛡️</div><div class="srif"><div class="srn">방산 / 조선</div><div class="srd">이란 협상 붕괴 재부각 · HD현대중 +11% · 한화에어로-Northrop 파트너십</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:92%;background:#2659a8;"></div></div><div class="hlbl">🔥🔥🔥 강추</div></div></div>
-      <div class="sr"><div class="srk">3</div><div class="srico">⚡</div><div class="srif"><div class="srn">전력 / 원전 인프라</div><div class="srd">GEV +8% 어닝 비트 · 데이터센터 전력 수요 폭발 · 두산에너빌리티</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:82%;background:#c08000;"></div></div><div class="hlbl">🔥🔥🔥 급부상</div></div></div>
-      <div class="sr"><div class="srk">4</div><div class="srico">🏥</div><div class="srif"><div class="srn">헬스케어 / 방어주</div><div class="srd">UNH +7% · AXP 소비 확인 · 고유가 환경 방어주 상대 강세</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:65%;background:#c08000;"></div></div><div class="hlbl">🔥🔥 방어 강화</div></div></div>
-      <div class="sr"><div class="srk">5</div><div class="srico">⚠️</div><div class="srif"><div class="srn">AI 소프트웨어</div><div class="srd">NOW -18% · IBM -8% · 고PER AI 소프트 경보 — 가이던스 미달 패닉</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:20%;background:var(--red);"></div></div><div class="hlbl">⚠ 단기 회피</div></div></div>
-    </div>
-  </div>
-
-  <!-- 미국 종목 -->
-  <div class="card c2">
-    <div class="ch"><span class="tg tgr">🇺🇸 US</span><span class="ct">미국 핵심 종목 — 어닝 결과 반영 최신판</span></div>
-    <div class="cb" style="padding:0;">
-      <div class="tw">
-        <table class="tbl">
-          <thead><tr><th>티커</th><th>어닝결과</th><th>현재가</th><th>목표가</th><th>포인트</th></tr></thead>
-          <tbody>
-            <tr><td><div class="sy ut">TXN 🚀</div><div class="sb2">최고 급등</div></td><td class="ut">+18% 급등</td><td class="mn2" style="color:var(--text);">급등 중</td><td class="ut">추가 상승</td><td style="font-size:11px;">AI 산업반도체 수요 폭발 확인</td></tr>
-            <tr><td><div class="sy ut">NVDA</div><div class="sb2">Vera Rubin 수요</div></td><td class="ut">+1.3% 프리</td><td class="mn2">$202.50</td><td class="gl">$250 목표</td><td style="font-size:11px;">구글 TPU8 + Vera Rubin 동시 채택</td></tr>
-            <tr><td><div class="sy ut">TSM</div><div class="sb2">AI 파운드리 독점</div></td><td class="ut">Q1 비트</td><td class="mn2">할인중</td><td class="gl">$428 목표</td><td style="font-size:11px;">AI 칩 CAGR 50%+ 구조적 성장</td></tr>
-            <tr><td><div class="sy ut">TSLA</div><div class="sb2">EPS $0.41 비트</div></td><td class="ut">EPS +11%</td><td class="mn2">$400</td><td class="gl">CAPEX 주의</td><td style="font-size:11px;">Optimus 로봇 연 1000만대 라인 준비</td></tr>
-            <tr><td><div class="sy ut">GEV</div><div class="sb2">전력 인프라</div></td><td class="ut">+8% 어닝비트</td><td class="mn2">상승중</td><td class="ut">추가상승</td><td style="font-size:11px;">데이터센터 전력 수요 가이던스 상향</td></tr>
-            <tr><td><div class="sy dt2">NOW ⚠</div><div class="sb2">ServiceNow</div></td><td class="dt2">-18% 쇼크</td><td class="mn2">급락중</td><td class="dt2">관망</td><td style="font-size:11px;">고PER AI 소프트 가이던스 실망 경보</td></tr>
-          </tbody>
-        </table>
+    <!-- PCE 경보 -->
+    <div class="al al-y">
+      <div class="alico">📊</div>
+      <div>
+        <div class="all all-y">오늘 최대 이벤트 · 10:00 AM ET</div>
+        <div class="alt"><b>PCE 물가지수 + 미시간 소비자심리</b> 발표. 유가 $96 상황에서 PCE까지 높으면 최악 조합. 예상 하회 → 성장주 반등 / 상회 → 고PER 전종목 급락.</div>
       </div>
     </div>
   </div>
 
-  <!-- 국내 종목 -->
-  <div class="card c2">
-    <div class="ch"><span class="tg tpk">🇰🇷 KR</span><span class="ct">국내 핵심 종목 — 방산·조선 독주</span></div>
-    <div class="cb" style="padding:0;">
-      <div class="tw">
-        <table class="tbl">
-          <thead><tr><th>종목</th><th>어제</th><th>목표가</th><th>촉매</th></tr></thead>
-          <tbody>
-            <tr><td><div class="sy ut">HD현대중공업 🚀</div><div class="sb2">조선 방산</div></td><td class="ut">+11.28%</td><td class="gl">+40%+</td><td style="font-size:11px;">스웨덴 쇄빙선 첫 수출 + 이란 재긴장</td></tr>
-            <tr><td><div class="sy ut">한화에어로스페이스</div><div class="sb2">방산 수출 1위</div></td><td class="ut">+1.80%</td><td class="gl">175만원</td><td style="font-size:11px;">Northrop Grumman 파트너십 체결</td></tr>
-            <tr><td><div class="sy ut">두산에너빌리티</div><div class="sb2">전력·원전</div></td><td class="ut">+5.69%</td><td class="gl">+50%+</td><td style="font-size:11px;">GEV +8% → 전력 인프라 연동 급등</td></tr>
-            <tr><td><div class="sy">SK하이닉스</div><div class="sb2">영업이익 37.6조</div></td><td class="mn2" style="color:var(--text2);">-0.08%</td><td class="gl">180만원</td><td style="font-size:11px;">어닝 이미 선반영. 중장기 보유 유지.</td></tr>
-            <tr><td><div class="sy">LG에너지솔루션</div><div class="sb2">배터리</div></td><td class="dt2">-3.82%</td><td class="gl">조정 중</td><td style="font-size:11px;">고유가 → EV 수요 둔화 우려 압박</td></tr>
-          </tbody>
-        </table>
+  <!-- ████ 섹션 3 · Today 핵심 섹터/종목 (연노랑) ████ -->
+  <div class="pdiv pd3"></div>
+  <div class="part p3 fu d3">
+    <div class="plbl">
+      <span class="pnum n3">섹션 03</span>
+      <span class="ptit">Today 핵심 섹터 / 종목</span>
+      <div class="pline"></div>
+    </div>
+
+    <!-- 섹터 순위 -->
+    <div class="card c3">
+      <div class="ch"><span class="tg ty">SECTOR RANK</span><span class="ct">오늘 기준 섹터 우선순위</span></div>
+      <div>
+        <div class="sr"><div class="srk">1</div><div class="srico">💡</div><div class="srif"><div class="srn">반도체 / AI 인프라</div><div class="srd">SK하이닉스 37.6조 · TXN +18% · NVDA Vera Rubin</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:95%;background:#1e8a52;"></div></div><div class="hlbl">🔥🔥🔥 최선호</div></div></div>
+        <div class="sr"><div class="srk">2</div><div class="srico">🛡️</div><div class="srif"><div class="srn">방산 / 조선</div><div class="srd">이란 재긴장 · HD현대중 +11% · Northrop 파트너십</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:92%;background:#2659a8;"></div></div><div class="hlbl">🔥🔥🔥 강추</div></div></div>
+        <div class="sr"><div class="srk">3</div><div class="srico">⚡</div><div class="srif"><div class="srn">전력 / 원전 인프라</div><div class="srd">GEV +8% 데이터센터 전력 · 두산에너빌리티</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:82%;background:#c08000;"></div></div><div class="hlbl">🔥🔥🔥 급부상</div></div></div>
+        <div class="sr"><div class="srk">4</div><div class="srico">🏥</div><div class="srif"><div class="srn">헬스케어 / 방어주</div><div class="srd">UNH +7% · AXP 소비 · 고유가 방어주 강세</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:65%;background:#c08000;"></div></div><div class="hlbl">🔥🔥 방어 강화</div></div></div>
+        <div class="sr"><div class="srk">5</div><div class="srico">⚠️</div><div class="srif"><div class="srn">AI 소프트웨어</div><div class="srd">NOW -18% · IBM -8% · 고PER 경보</div></div><div class="hbw"><div class="hbar"><div class="hfill" style="width:20%;background:var(--red);"></div></div><div class="hlbl">⚠ 단기 회피</div></div></div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ████ PART 03 오늘의 액션(트레이더) · 연노랑 ████ -->
-<div class="pdiv pd3"></div>
-<div class="part p3 fu d3">
-  <div class="plbl">
-    <span class="pnum n3">PART 03</span>
-    <span class="ptit">⚡ 오늘의 액션 — 트레이더</span>
-    <div class="pline"></div>
-  </div>
-  <p style="font-size:12px;color:var(--text2);margin-bottom:14px;">기준: 1일~4주 / PCE 발표 전후 변동성 집중 관리</p>
-
-  <!-- 시나리오: PCE -->
-  <div class="sg">
-    <div class="sbox">
-      <div class="shd" style="background:#f0faf4;border-bottom:1px solid #b0e0c0;">
-        <div class="slbl" style="color:var(--green);">PCE 하회<br>성장주 반등</div>
-        <div class="sprob" style="color:var(--green);">45%</div>
-      </div>
-      <div class="sbd">
-        <div class="sit"><span class="sact" style="background:#f0faf4;color:var(--green);border:1px solid rgba(30,138,82,.22);">BUY</span><span>NVDA·TSM·SK하이닉스 반등 매수</span></div>
-        <div class="sit"><span class="sact" style="background:#f0faf4;color:var(--green);border:1px solid rgba(30,138,82,.22);">BUY</span><span>두산에너빌리티·GEV 전력 인프라</span></div>
-        <div class="sit"><span class="sact" style="background:#fffbea;color:#9a7230;border:1px solid rgba(154,114,48,.22);">HOLD</span><span>방산주 — 이란 재긴장 독립 수요</span></div>
-        <div class="sit" style="border:none;"><span class="sact" style="background:var(--redbg);color:var(--red);border:1px solid rgba(201,48,48,.22);">회피</span><span>NOW·IBM 등 고PER 소프트</span></div>
+    <!-- 미국 종목 -->
+    <div class="card c3">
+      <div class="ch"><span class="tg tgr">🇺🇸 US</span><span class="ct">미국 핵심 종목</span></div>
+      <div class="cb" style="padding:0;">
+        <div class="tw">
+          <table class="tbl">
+            <thead><tr><th>티커</th><th>결과/상태</th><th>현재가</th><th>포인트</th></tr></thead>
+            <tbody>
+              <tr><td><div class="sy ut">TXN 🚀</div><div class="sb2">최고급등</div></td><td class="ut">+18%</td><td class="mn2">급등중</td><td style="font-size:11px;">AI 산업반도체 수요 폭발</td></tr>
+              <tr><td><div class="sy ut">NVDA</div><div class="sb2">Vera Rubin</div></td><td class="ut">+1.3%</td><td class="mn2">$202.50</td><td style="font-size:11px;">구글 TPU8 + Rubin 채택</td></tr>
+              <tr><td><div class="sy ut">TSM</div><div class="sb2">파운드리</div></td><td class="ut">Q1 비트</td><td class="gl">$428목표</td><td style="font-size:11px;">AI 칩 CAGR 50%+</td></tr>
+              <tr><td><div class="sy ut">TSLA</div><div class="sb2">EPS +11%</div></td><td class="gl">주의</td><td class="mn2">$400</td><td style="font-size:11px;">CAPEX $25B+ 부담</td></tr>
+              <tr><td><div class="sy ut">GEV</div><div class="sb2">전력인프라</div></td><td class="ut">+8%</td><td class="mn2">상승중</td><td style="font-size:11px;">데이터센터 전력</td></tr>
+              <tr><td><div class="sy dt2">NOW ⚠</div><div class="sb2">ServiceNow</div></td><td class="dt2">-18%</td><td class="dt2">관망</td><td style="font-size:11px;">고PER AI 소프트 경보</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="sbox">
-      <div class="shd" style="background:var(--redbg);border-bottom:1px solid #f0c0c0;">
-        <div class="slbl" style="color:var(--red);">PCE 상회<br>최악 조합</div>
-        <div class="sprob" style="color:var(--red);">55%</div>
-      </div>
-      <div class="sbd">
-        <div class="sit"><span class="sact" style="background:var(--bluebg);color:var(--blue);border:1px solid rgba(38,89,168,.2);">HEDGE</span><span>금(GLD) 비중 10%+ 확대</span></div>
-        <div class="sit"><span class="sact" style="background:#f0faf4;color:var(--green);border:1px solid rgba(30,138,82,.22);">유지</span><span>방산주 — 이란+PCE 이중 수혜</span></div>
-        <div class="sit"><span class="sact" style="background:var(--redbg);color:var(--red);border:1px solid rgba(201,48,48,.22);">손절</span><span>고PER 성장주 전량 정리</span></div>
-        <div class="sit" style="border:none;"><span class="sact" style="background:var(--redbg);color:var(--red);border:1px solid rgba(201,48,48,.22);">STOP</span><span>신규 매수 전면 중단</span></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- 트레이딩 액션 -->
-  <div class="card c3">
-    <div class="ch"><span class="tg ty">⚡ 오늘 매매 가이드</span><span class="ct">PCE 발표 전후 트레이딩 원칙</span></div>
-    <div class="ai"><span class="ab abw">🔥 1순위</span><div><div class="ait">PCE 발표 전(오전 10시 전) 무조건 관망</div><div class="aic">유가 $96 + 이란 협상 붕괴 상황에서 PCE까지 높으면 최악. 결과 확인 후 즉각 대응.</div></div></div>
-    <div class="ai"><span class="ab abb">보유 유지</span><div><div class="ait">방산주 · 전력인프라 — 이란 재긴장 수혜</div><div class="aic">HD현대중공업 +11% · GEV +8% — 유가 급등 = 방산·에너지 독립 수요. PCE와 무관하게 강세.</div></div></div>
-    <div class="ai"><span class="ab abb">PCE 후 검토</span><div><div class="ait">NVDA · SK하이닉스 — PCE 하회 시 즉각 진입</div><div class="aic">반도체 AI 수요 구조적 성장 변함없음. PCE 하회 → 금리 우려 완화 → 반도체 반등 기회.</div></div></div>
-    <div class="ai"><span class="ab abh">금주 수익 실현</span><div><div class="ait">이번 주 큰 수익 난 포지션 일부 익절</div><div class="aic">이번 주 KOSPI +2~3% · 방산·반도체 상당히 올랐음. 주말 전 일부 익절로 리스크 감소.</div></div></div>
-    <div class="ai"><span class="ab abs">즉각 정리</span><div><div class="ait">AI 소프트 (NOW·IBM 유사 종목)</div><div class="aic">NOW -18%가 보여준 교훈 — 고PER AI 소프트는 가이던스 실망 시 -15~20% 즉각 급락. 보유 중이면 손절.</div></div></div>
-    <div class="ai"><span class="ab abhg">유지</span><div><div class="ait">금(GLD) · 달러 헤지 포지션</div><div class="aic">유가 $96 + 이란 불안 = 금 헤지 당분간 유지. 금 $4,820 역대최고 — 추가 상승 여력.</div></div></div>
-    <div class="ai" style="border:none;"><span class="ab abs">절대금지</span><div><div class="ait">레버리지 ETF · PCE 전후 배팅</div><div class="aic">주말 앞두고 이란·PCE 이중 불확실성. 레버리지 절대 금지.</div></div></div>
-  </div>
-
-  <!-- 5계명 -->
-  <div class="rb">
-    <div class="rl" style="color:#c08000;">⚡ 이번 주 마지막 날 — 5계명</div>
-    <div class="ri"><span class="rn" style="color:#c08000;">①</span><span>PCE 결과 확인 전 <b>신규 매수 금지</b></span></div>
-    <div class="ri"><span class="rn" style="color:#c08000;">②</span><span>NOW·IBM 쇼크 교훈 — <b>고PER 가이던스 미달 = 즉각 손절</b></span></div>
-    <div class="ri"><span class="rn" style="color:#c08000;">③</span><span>이번 주 수익 포지션 <b>일부 주말 전 익절</b></span></div>
-    <div class="ri"><span class="rn" style="color:#c08000;">④</span><span>유가 $96 환경 — <b>방산·전력인프라 계속 보유</b></span></div>
-    <div class="ri"><span class="rn" style="color:#c08000;">⑤</span><span><b style="color:var(--red);">레버리지 ETF 절대 금지</b> — 주말 리스크 최대 구간</span></div>
-  </div>
-
-  <!-- 캘린더 -->
-  <div class="card c3">
-    <div class="ch"><span class="tg ty">📅 캘린더</span><span class="ct">오늘 + 다음 주 핵심 일정</span></div>
-    <div>
-      <div class="cr"><div class="cd" style="color:var(--red);font-weight:700;">4/24 금<br>🔥 오늘</div><div class="ce"><b>PCE 물가지수</b> (10AM ET) + 미시간 소비자심리 최종치<br>이번 주 마지막이자 가장 중요한 데이터</div><div class="ci cimax">🔴 최상</div></div>
-      <div class="cr"><div class="cd">4/24 금</div><div class="ce">SLB · P&amp;G · Charter Communications · Norfolk Southern 어닝</div><div class="ci cihi">🟡 상</div></div>
-      <div class="cr"><div class="cd">4/28 월</div><div class="ce">Coca-Cola · Visa · UPS · Starbucks 어닝</div><div class="ci cihi">🟡 상</div></div>
-      <div class="cr"><div class="cd" style="color:var(--red);font-weight:700;">4/29 화</div><div class="ce"><b>MSFT · AMZN · GOOGL · META</b> 장마감후 어닝 — 빅테크 슈퍼위크 개막</div><div class="ci cimax">🔴 최상</div></div>
-      <div class="cr"><div class="cd">4/29 화</div><div class="ce"><b>FOMC 금리 결정</b> + 3월 내구재 주문</div><div class="ci cimax">🔴 최상</div></div>
-      <div class="cr" style="border:none;"><div class="cd">4/30 목</div><div class="ce"><b>AAPL</b> 어닝 + 미국 Q1 GDP 최종치</div><div class="ci cimax">🔴 최상</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ████ PART 04 가치투자 액션 · 연두 ████ -->
-<div class="pdiv pd4"></div>
-<div class="part p4 fu d4">
-  <div class="plbl">
-    <span class="pnum n4">PART 04</span>
-    <span class="ptit">🏛️ 오늘의 액션 — 가치투자</span>
-    <div class="pline"></div>
-  </div>
-  <p style="font-size:12px;color:var(--text2);margin-bottom:14px;">기준: 6개월~3년 / 이번 주 어닝 결과 완전 반영 최신 판단</p>
-
-  <div class="card c4">
-    <div class="ch"><span class="tg tgr">🏛️ 가치투자 액션</span><span class="ct">어닝 결과 반영 중장기 전략 업데이트</span></div>
-    <div class="ai"><span class="ab abb">핵심 보유</span><div><div class="ait">SK하이닉스 — 37.6조 사상최대 확인, 장기 보유</div><div class="aic">목표 180만원(현재 대비 +47%). 단기 주가 반응 미미해도 이익 성장 구조 변함없음. 분기마다 신기록 갱신 중.</div></div></div>
-    <div class="ai"><span class="ab abb">장기 적립</span><div><div class="ait">HD현대중공업 · 한화에어로스페이스</div><div class="aic">스웨덴 쇄빙선 · Northrop 파트너십 — 수주잔고 계속 쌓임. 이란 장기화 = 방산 구조적 수요 확대. 조정 시 추가 매수.</div></div></div>
-    <div class="ai"><span class="ab abb">신규 검토</span><div><div class="ait">두산에너빌리티 · GE Vernova</div><div class="aic">데이터센터 전력 수요 폭발이 예상보다 빠름. GEV +8% 가이던스 상향이 증명. 원전·전력 인프라 장기 보유 강화.</div></div></div>
-    <div class="ai"><span class="ab abb">분할 매수</span><div><div class="ait">TSMC — 목표 +60~80% (18~24개월)</div><div class="aic">AI 칩 CAGR 50%+ 변함없음. TXN +18%가 반도체 수요 폭발을 재확인. TSMC 추가 분할 매수 근거 강화.</div></div></div>
-    <div class="ai"><span class="ab abh">PCE 후 판단</span><div><div class="ait">TSLA — 어닝 비트지만 CAPEX 부담</div><div class="aic">EPS $0.41 비트 + 자동차마진 19.2% 개선. 그러나 CAPEX $25B+ + FCF 마이너스. 로보택시 상용화 타임라인 확인 후 장기 투자 결정.</div></div></div>
-    <div class="ai"><span class="ab abs">즉각 배제</span><div><div class="ait">고PER AI 소프트 (NOW·IBM 유사)</div><div class="aic">NOW -18%의 교훈 — 이란 전쟁이 기업 소프트웨어 구독에 직접 영향. 수익성 확인 전 고PER 소프트 투자 자제.</div></div></div>
-    <div class="ai" style="border:none;"><span class="ab abhg">실탄 유지</span><div><div class="ait">현금 15% + 다음주 빅테크 어닝 대기</div><div class="aic">4/29 MSFT·AMZN·GOOGL·META 동시 발표. 어닝 충격 대응 + 서프라이즈 기회 포착 실탄 필수.</div></div></div>
-  </div>
-
-  <!-- 포트폴리오 배분 -->
-  <div class="rb">
-    <div class="rl" style="color:#1e8a52;">📊 포트폴리오 배분 업데이트 — 이번 주 어닝 반영</div>
-    <div class="ar"><div class="al2">💡 AI·반도체 인프라</div><div class="abg"><div class="afl" style="width:33%;background:#1e8a52;"></div></div><div class="ap" style="color:#1e8a52;">30~35%</div></div>
-    <div class="ar"><div class="al2">🛡️ 방산·조선</div><div class="abg"><div class="afl" style="width:20%;background:#2659a8;"></div></div><div class="ap" style="color:#2659a8;">18~22%</div></div>
-    <div class="ar"><div class="al2">⚡ 전력·원전인프라</div><div class="abg"><div class="afl" style="width:12%;background:#c08000;"></div></div><div class="ap" style="color:#c08000;">10~12%</div></div>
-    <div class="ar"><div class="al2">🏥 헬스케어·방어주</div><div class="abg"><div class="afl" style="width:10%;background:#c08000;"></div></div><div class="ap" style="color:#c08000;">8~10%</div></div>
-    <div class="ar"><div class="al2">🥇 금 헤지</div><div class="abg"><div class="afl" style="width:8%;background:#9a7230;"></div></div><div class="ap" style="color:#9a7230;">7~10%</div></div>
-    <div class="ar"><div class="al2">💵 현금 (실탄)</div><div class="abg"><div class="afl" style="width:15%;background:#9aa0b0;"></div></div><div class="ap" style="color:#9aa0b0;">최소 15%</div></div>
-  </div>
-
-  <!-- 이번 주 요약 + 다음주 전망 -->
-  <div class="card c4">
-    <div class="ch"><span class="tg tgr">📊 이번 주 결산</span><span class="ct">4/21~24 한 주 요약</span></div>
-    <div class="cb" style="padding:0;">
-      <div class="tw">
-        <table class="cmt">
-          <thead><tr><th>구분</th><th>이번 주 결과</th><th>다음 주 핵심</th></tr></thead>
-          <tbody>
-            <tr><td>KOSPI</td><td class="ut" style="font-weight:700;">3일 연속 사상최고 6,538</td><td>MSFT·META 어닝 연동 방향</td></tr>
-            <tr><td>반도체</td><td class="ut" style="font-weight:700;">SK하이닉스 37.6조 사상최대</td><td>TSMC·NVDA 어닝 후 방향 재확인</td></tr>
-            <tr><td>방산·조선</td><td class="ut" style="font-weight:700;">HD현대중 +11% · 한화 파트너십</td><td>이란 협상 진전 여부가 변수</td></tr>
-            <tr><td>TSLA</td><td style="color:#c08000;font-weight:700;">EPS 비트 but CAPEX 부담</td><td>FCF 마이너스 우려 지속 모니터링</td></tr>
-            <tr><td>AI 소프트</td><td class="dt2" style="font-weight:700;">NOW -18% · IBM -8% 쇼크</td><td>MSFT·META 가이던스가 방향 결정</td></tr>
-            <tr><td>유가</td><td class="dt2" style="font-weight:700;">WTI $96 · 이란 협상 붕괴</td><td>PCE + 협상 진전 여부 핵심</td></tr>
-          </tbody>
-        </table>
+    <!-- 국내 종목 -->
+    <div class="card c3">
+      <div class="ch"><span class="tg ty">🇰🇷 KR</span><span class="ct">국내 핵심 종목</span></div>
+      <div class="cb" style="padding:0;">
+        <div class="tw">
+          <table class="tbl">
+            <thead><tr><th>종목</th><th>어제</th><th>목표가</th><th>촉매</th></tr></thead>
+            <tbody>
+              <tr><td><div class="sy ut">HD현대중공업 🚀</div><div class="sb2">조선·방산</div></td><td class="ut">+11.28%</td><td class="gl">+40%</td><td style="font-size:11px;">스웨덴 쇄빙선 수출</td></tr>
+              <tr><td><div class="sy ut">한화에어로</div><div class="sb2">방산수출</div></td><td class="ut">+1.80%</td><td class="gl">175만원</td><td style="font-size:11px;">Northrop 파트너십</td></tr>
+              <tr><td><div class="sy ut">두산에너빌리티</div><div class="sb2">원전·SMR</div></td><td class="ut">+5.69%</td><td class="gl">+50%</td><td style="font-size:11px;">GEV 연동 급등</td></tr>
+              <tr><td><div class="sy">SK하이닉스</div><div class="sb2">영업이익 37.6조</div></td><td class="mn2" style="color:var(--text2);">-0.08%</td><td class="gl">180만원</td><td style="font-size:11px;">이미 선반영</td></tr>
+              <tr><td><div class="sy">삼성전자</div><div class="sb2">외인매수</div></td><td class="ut">+3.45%</td><td class="gl">상향</td><td style="font-size:11px;">HBM3E·AI서버</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 최종 버딕트 -->
-  <div class="vd">
-    <div class="vl">전문가 최종 판단 · Expert Verdict · Week 1 종합</div>
-    <div class="vt">
-      "이번 주 시장은 두 얼굴을 보여줬다.<br>
-      <em>SK하이닉스·HD현대중·두산에너빌리티</em>는 사상 최고를 찍었고,<br>
-      <em>NOW와 IBM</em>은 하루에 -18%, -8%가 났다.<br>
-      좋은 종목에 있었다면 역대급 수익,<br>
-      잘못된 종목에 있었다면 큰 손실.<br>
-      <em>다음 주 빅테크 어닝</em>이 이 모든 것을 다시 결정한다."
+  <!-- ████ 섹션 4 · Today Action (연두) ████ -->
+  <div class="pdiv pd4"></div>
+  <div class="part p4 fu d4">
+    <div class="plbl">
+      <span class="pnum n4">섹션 04</span>
+      <span class="ptit">Today Action · 트레이더 + 가치투자</span>
+      <div class="pline"></div>
+    </div>
+
+    <!-- 시나리오 -->
+    <div class="sg">
+      <div class="sbox">
+        <div class="shd" style="background:#f0faf4;border-bottom:1px solid #b0e0c0;">
+          <div class="slbl" style="color:var(--green);">PCE 하회<br>성장주 반등</div>
+          <div class="sprob" style="color:var(--green);">45%</div>
+        </div>
+        <div class="sbd">
+          <div class="sit"><span class="sact" style="background:#f0faf4;color:var(--green);border:1px solid rgba(30,138,82,.22);">BUY</span><span>NVDA·TSM·SK하이닉스 반등</span></div>
+          <div class="sit"><span class="sact" style="background:#f0faf4;color:var(--green);border:1px solid rgba(30,138,82,.22);">BUY</span><span>두산에너빌리티·GEV</span></div>
+          <div class="sit"><span class="sact" style="background:#fffbea;color:#9a7230;border:1px solid rgba(154,114,48,.22);">HOLD</span><span>방산 · 독립 수요 유지</span></div>
+          <div class="sit" style="border:none;"><span class="sact" style="background:var(--redbg);color:var(--red);border:1px solid rgba(201,48,48,.22);">회피</span><span>NOW·IBM 고PER 소프트</span></div>
+        </div>
+      </div>
+      <div class="sbox">
+        <div class="shd" style="background:var(--redbg);border-bottom:1px solid #f0c0c0;">
+          <div class="slbl" style="color:var(--red);">PCE 상회<br>최악 조합</div>
+          <div class="sprob" style="color:var(--red);">55%</div>
+        </div>
+        <div class="sbd">
+          <div class="sit"><span class="sact" style="background:var(--bluebg);color:var(--blue);border:1px solid rgba(38,89,168,.2);">HEDGE</span><span>금(GLD) 10%+ 확대</span></div>
+          <div class="sit"><span class="sact" style="background:#f0faf4;color:var(--green);border:1px solid rgba(30,138,82,.22);">유지</span><span>방산주 이중 수혜</span></div>
+          <div class="sit"><span class="sact" style="background:var(--redbg);color:var(--red);border:1px solid rgba(201,48,48,.22);">손절</span><span>고PER 성장주 정리</span></div>
+          <div class="sit" style="border:none;"><span class="sact" style="background:var(--redbg);color:var(--red);border:1px solid rgba(201,48,48,.22);">STOP</span><span>신규 매수 전면 중단</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 트레이더 액션 -->
+    <div class="card c4">
+      <div class="ch"><span class="tg ty">⚡ 트레이더</span><span class="ct">단기(1일~4주) 매매 가이드</span></div>
+      <div class="ai"><span class="ab abw">🔥 1순위</span><div><div class="ait">PCE 발표 전(10시 전) 무조건 관망</div><div class="aic">유가 $96 + 이란 붕괴 + PCE까지 높으면 최악. 결과 후 즉각 대응.</div></div></div>
+      <div class="ai"><span class="ab abb">보유 유지</span><div><div class="ait">방산주 · 전력인프라</div><div class="aic">HD현대중 +11% · GEV +8% — 유가 급등 = 독립 수요. PCE와 무관하게 강세.</div></div></div>
+      <div class="ai"><span class="ab abs">즉각 정리</span><div><div class="ait">AI 소프트 (NOW·IBM 유사)</div><div class="aic">NOW -18%의 교훈 — 고PER 소프트는 가이던스 실망 시 -15~20% 즉각 급락.</div></div></div>
+      <div class="ai"><span class="ab abh">주말 전 익절</span><div><div class="ait">이번 주 큰 수익 난 포지션 일부 정리</div><div class="aic">이번 주 방산·반도체 상당 상승. 주말 전 일부 익절로 리스크 감소.</div></div></div>
+      <div class="ai" style="border:none;"><span class="ab abs">절대금지</span><div><div class="ait">레버리지 ETF</div><div class="aic">주말 앞두고 이란·PCE 이중 불확실성. 절대 금지.</div></div></div>
+    </div>
+
+    <!-- 가치투자 액션 -->
+    <div class="card c4">
+      <div class="ch"><span class="tg tgr">🏛️ 가치투자</span><span class="ct">중장기(6M~3Y) 분할 매수</span></div>
+      <div class="ai"><span class="ab abb">핵심 보유</span><div><div class="ait">SK하이닉스 — 37.6조 사상최대</div><div class="aic">목표 180만원 (+47%). 분기마다 신기록. 단기 주가 미미해도 이익 성장 구조 변함없음.</div></div></div>
+      <div class="ai"><span class="ab abb">장기 적립</span><div><div class="ait">HD현대중공업 · 한화에어로</div><div class="aic">스웨덴 쇄빙선 · Northrop 파트너십. 이란 장기화 = 방산 구조적 수요 확대.</div></div></div>
+      <div class="ai"><span class="ab abb">신규 검토</span><div><div class="ait">두산에너빌리티 · GE Vernova</div><div class="aic">데이터센터 전력 수요 폭발이 예상보다 빠름. GEV +8% 가이던스 상향이 증명.</div></div></div>
+      <div class="ai"><span class="ab abb">분할 매수</span><div><div class="ait">TSMC — 목표 +60~80%</div><div class="aic">AI 칩 CAGR 50%+ 변함없음. TXN +18%이 반도체 수요 폭발 재확인.</div></div></div>
+      <div class="ai" style="border:none;"><span class="ab abhg">실탄 유지</span><div><div class="ait">현금 15% + 빅테크 어닝 대기</div><div class="aic">4/29 MSFT·AMZN·GOOGL·META 동시 발표. 기회 포착 실탄 필수.</div></div></div>
+    </div>
+
+    <!-- 포트폴리오 -->
+    <div class="rb">
+      <div class="rl" style="color:#1e8a52;">📊 포트폴리오 배분 (9억 → 20억)</div>
+      <div class="ar"><div class="al2">💡 AI·반도체</div><div class="abg"><div class="afl" style="width:33%;background:#1e8a52;"></div></div><div class="ap" style="color:#1e8a52;">30~35%</div></div>
+      <div class="ar"><div class="al2">🛡️ 방산·조선</div><div class="abg"><div class="afl" style="width:20%;background:#2659a8;"></div></div><div class="ap" style="color:#2659a8;">18~22%</div></div>
+      <div class="ar"><div class="al2">⚡ 전력·원전</div><div class="abg"><div class="afl" style="width:12%;background:#c08000;"></div></div><div class="ap" style="color:#c08000;">10~12%</div></div>
+      <div class="ar"><div class="al2">🏥 헬스·방어주</div><div class="abg"><div class="afl" style="width:10%;background:#c08000;"></div></div><div class="ap" style="color:#c08000;">8~10%</div></div>
+      <div class="ar"><div class="al2">🥇 금 헤지</div><div class="abg"><div class="afl" style="width:8%;background:#9a7230;"></div></div><div class="ap" style="color:#9a7230;">7~10%</div></div>
+      <div class="ar"><div class="al2">💵 현금</div><div class="abg"><div class="afl" style="width:15%;background:#9aa0b0;"></div></div><div class="ap" style="color:#9aa0b0;">15%</div></div>
     </div>
   </div>
-</div>
-</div>
 
-<!-- FOOTER -->
-<div class="ft">
-  <p>TODAY 투자가이드 · 2026.04.24 (FRI) · 이번 주 어닝 완전 반영</p>
-  <p class="ftnext">다음 업데이트: 4/28(월) · 4/29 빅테크(MSFT·AMZN·GOOGL·META) + FOMC 대비</p>
-  <p style="margin-top:8px;">본 가이드는 투자 참고 정보이며 최종 판단 및 손익은 본인 책임입니다 · Snowball 투자가이드</p>
-</div>
+  <!-- ████ 섹션 5 · Today Guide 종합분석 (보라) ████ -->
+  <div class="pdiv pd5"></div>
+  <div class="part p5 fu d5">
+    <div class="plbl">
+      <span class="pnum n5">섹션 05</span>
+      <span class="ptit">Today Guide · 종합분석</span>
+      <div class="pline"></div>
+    </div>
+
+    <!-- 공포탐욕 게이지 -->
+    <div class="card c5">
+      <div class="ch"><span class="tg tpu">😤 공포탐욕지수</span><span class="ct">Fear & Greed Index · 70</span></div>
+      <div class="fg-wrap">
+        <div class="fg-gauge">
+          <div class="fg-needle" style="left:70%;"></div>
+        </div>
+        <div class="fg-labels">
+          <span>극단공포 0</span>
+          <span>공포 25</span>
+          <span>중립 50</span>
+          <span>탐욕 75</span>
+          <span>극단탐욕 100</span>
+        </div>
+        <div class="fg-row">
+          <div class="fg-score">70</div>
+          <div class="fg-desc">
+            <b>탐욕 구간 진입</b> — 한 달 전 극단공포 15에서 55포인트 급반등. 이란 긴장 완화 기대로 낙관론 과열. <b>80+ 진입 시 매도 시점 고려.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 이번 주 요약 -->
+    <div class="card c5">
+      <div class="ch"><span class="tg tpu">📊 결산</span><span class="ct">이번 주 (4/21~24) 종합</span></div>
+      <div class="cb" style="padding:0;">
+        <div class="tw">
+          <table class="cmt">
+            <thead><tr><th>구분</th><th>이번 주 결과</th><th>다음 주 변수</th></tr></thead>
+            <tbody>
+              <tr><td>KOSPI</td><td class="ut" style="font-weight:700;">장중 6,538 사상최고</td><td>MSFT·META 어닝 연동</td></tr>
+              <tr><td>반도체</td><td class="ut" style="font-weight:700;">SK하이닉스 37.6조 최대</td><td>TSMC·NVDA 어닝 재확인</td></tr>
+              <tr><td>방산·조선</td><td class="ut" style="font-weight:700;">HD현대중 +11% 파트너십</td><td>이란 협상 진전 여부</td></tr>
+              <tr><td>TSLA</td><td style="color:#c08000;font-weight:700;">EPS 비트 but CAPEX 부담</td><td>FCF 마이너스 지속 모니터링</td></tr>
+              <tr><td>AI 소프트</td><td class="dt2" style="font-weight:700;">NOW -18% · IBM -8% 쇼크</td><td>MSFT·META가 방향 결정</td></tr>
+              <tr><td>유가</td><td class="dt2" style="font-weight:700;">WTI $96 · 이란 붕괴</td><td>PCE + 협상 진전 핵심</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 다음주 일정 -->
+    <div class="card c5">
+      <div class="ch"><span class="tg tpu">📅 다음주</span><span class="ct">4/28~30 핵심 이벤트</span></div>
+      <div>
+        <div class="cr"><div class="cd">4/28 월</div><div class="ce">Coca-Cola · Visa · UPS · Starbucks 어닝</div><div class="ci cihi">🟡 상</div></div>
+        <div class="cr"><div class="cd" style="color:var(--red);font-weight:700;">4/29 화</div><div class="ce"><b>MSFT · AMZN · GOOGL · META</b> 장마감후<br>+ <b>FOMC 금리 결정</b> 동시 발표</div><div class="ci cimax">🔴 최상</div></div>
+        <div class="cr" style="border:none;"><div class="cd" style="color:var(--red);font-weight:700;">4/30 목</div><div class="ce"><b>AAPL 어닝</b> + 미국 Q1 GDP 최종치</div><div class="ci cimax">🔴 최상</div></div>
+      </div>
+    </div>
+
+    <!-- 최종 버딕트 -->
+    <div class="vd">
+      <div class="vl">전문가 최종 판단 · Week 1 종합</div>
+      <div class="vt">
+        "이번 주 시장은 <em>두 얼굴</em>을 보여줬다.<br>
+        <em>SK하이닉스·HD현대중·두산에너빌리티</em>는 사상 최고,<br>
+        <em>NOW·IBM</em>은 하루에 -18%, -8%.<br>
+        좋은 종목에 있었다면 역대급 수익,<br>
+        잘못된 종목에 있었다면 큰 손실.<br>
+        <em>다음 주 빅테크 어닝 + FOMC</em>가 모든 것을 다시 결정한다."
+      </div>
+    </div>
+  </div>
+  </div><!-- /wrap -->
+
+  <!-- FOOTER -->
+  <div class="ft">
+    <p>TODAY 투자가이드 · 2026.04.24 (FRI) · Week 1 완결</p>
+    <p class="ftnext">다음 업데이트: 4/28(월) · 빅테크 슈퍼위크 대비</p>
+    <p style="margin-top:8px;">본 가이드는 투자 참고 정보이며 최종 판단 및 손익은 본인 책임입니다</p>
+  </div>
+</div><!-- /tab1 -->
+
+<!-- ══════════════════════════════════════════
+     TAB 2 · 엘리트 탑 트레이더 가이드 (다크)
+══════════════════════════════════════════ -->
+<div class="panel" id="tab2">
+
+  <!-- COVER -->
+  <div class="t2-cover">
+    <div class="t2-eye">👑 The Elite Top Trader Guide</div>
+    <h1 class="t2-title">
+      상위 3%
+      <em>엘리트 탑 트레이더</em>
+    </h1>
+    <p class="t2-sub">
+      연 30%+ 수익을 꾸준히 내는 극소수가 되기 위한<br>
+      <b>완전한 로드맵</b> — 마인드셋부터 실전 시스템까지
+    </p>
+    <div class="t2-stats">
+      <div class="cst"><div class="cst-n">3%</div><div class="cst-l">연30%+ 유지</div></div>
+      <div class="cst"><div class="cst-n">90%</div><div class="cst-l">2년내 실패율</div></div>
+      <div class="cst"><div class="cst-n">5년</div><div class="cst-l">평균 숙성기간</div></div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">— 목차 Contents —</div>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="toc-n">00</span><span>냉혹한 현실</span></div>
+      <div class="toc-item"><span class="toc-n">01</span><span>마인드셋 기초</span></div>
+      <div class="toc-item"><span class="toc-n">02</span><span>5대 필수 학습</span></div>
+      <div class="toc-item"><span class="toc-n">03</span><span>매매 원칙서</span></div>
+      <div class="toc-item"><span class="toc-n">04</span><span>주/월 수익 구조</span></div>
+      <div class="toc-item"><span class="toc-n">05</span><span>매일 아침 루틴</span></div>
+      <div class="toc-item"><span class="toc-n">06</span><span>절대 금기 8가지</span></div>
+      <div class="toc-item"><span class="toc-n">07</span><span>트레이딩 일지</span></div>
+      <div class="toc-item"><span class="toc-n">08</span><span>9억→100억 로드맵</span></div>
+      <div class="toc-item"><span class="toc-n">09</span><span>황금 법칙 10</span></div>
+      <div class="toc-item"><span class="toc-n">10</span><span>종합 분석</span></div>
+      <div class="toc-item"><span class="toc-n">11</span><span>실천 체크리스트</span></div>
+    </div>
+  </div>
+
+  <div class="t2-content">
+
+    <!-- SECTION 00 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">00</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Reality Check</div>
+          <div class="t2-stit">냉혹한 현실</div>
+        </div>
+      </div>
+
+      <div class="t2-truth">
+        <div class="t2-truth-l">핵심 진실</div>
+        <div class="t2-truth-t">
+          전업 트레이더의 <em>90%가 첫 2년 안에 실패</em>합니다.<br>
+          연 30%+를 꾸준히 내는 트레이더는 <em>전체의 3% 미만</em>입니다.<br>
+          이것을 알고도 하겠다면, 진짜 이야기가 시작됩니다.
+        </div>
+      </div>
+
+      <div class="mvf-grid">
+        <div class="mvf mvf-m"><div class="mvf-l">❌ 실패자</div><div class="mvf-t"><b>돈 버는 방법</b>을 찾으면 부자가 된다</div></div>
+        <div class="mvf mvf-f"><div class="mvf-l">✅ 상위 3%</div><div class="mvf-t"><b>올바른 프로세스</b>를 반복하면 돈이 따라온다</div></div>
+        <div class="mvf mvf-m"><div class="mvf-l">❌ 실패자</div><div class="mvf-t">좋은 종목만 고르면 된다</div></div>
+        <div class="mvf mvf-f"><div class="mvf-l">✅ 상위 3%</div><div class="mvf-t"><b>손실 관리</b>가 수익 극대화보다 먼저다</div></div>
+        <div class="mvf mvf-m"><div class="mvf-l">❌ 실패자</div><div class="mvf-t">남들이 사는 걸 따라 사면 안전하다</div></div>
+        <div class="mvf mvf-f"><div class="mvf-l">✅ 상위 3%</div><div class="mvf-t"><b>군중이 탐욕스러울 때</b> 두려워하라</div></div>
+      </div>
+    </div>
+
+    <!-- SECTION 01 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">01</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 1 · Foundation</div>
+          <div class="t2-stit">마인드셋 — 가장 중요</div>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div class="t2-mc"><div class="t2-mci">🧠</div><div class="t2-mct">손실은 비용이다</div><div class="t2-mcd">사업 원가처럼, 손실은 트레이딩의 정상 비용. 손절을 두려워하면 더 큰 손실로 돌아옴.</div></div>
+        <div class="t2-mc"><div class="t2-mci">🎯</div><div class="t2-mct">틀리는 것은 정상</div><div class="t2-mcd">승률 60%면 최상급. 6번 맞고 4번 틀려도 수익이 나는 구조가 목표.</div></div>
+        <div class="t2-mc"><div class="t2-mci">🛡️</div><div class="t2-mct">지키는 것이 먼저</div><div class="t2-mcd">크게 버는 날보다 크게 잃지 않는 날이 더 중요. -50% 손실은 +100% 수익으로도 원금 복구.</div></div>
+        <div class="t2-mc"><div class="t2-mci">⏰</div><div class="t2-mct">복리의 시간 필요</div><div class="t2-mcd">9억이 20억이 되는 데 월 2%씩 3.5년. 서두르면 반드시 망함.</div></div>
+      </div>
+
+      <div class="t2-truth" style="margin-top:12px;">
+        <div class="t2-truth-l">Warren Buffett</div>
+        <div class="t2-truth-t">
+          "Rule No.1: <em>Never lose money.</em><br>
+          Rule No.2: <em>Never forget rule No.1.</em>"
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 02 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">02</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 2 · Knowledge</div>
+          <div class="t2-stit">반드시 통달할 5가지</div>
+        </div>
+      </div>
+
+      <div class="t2-stage">
+        <div class="t2-stage-h">
+          <div class="t2-stage-ico">📊</div>
+          <div><div class="t2-stage-l">필수 1</div><div class="t2-stage-n">시장 구조 이해</div></div>
+        </div>
+        <div class="t2-stage-b">
+          <p>기관·외국인·개인이 어떻게 다르게 행동하는지. 외국인이 선물을 사면 현물이 따라오고, 기관이 쉬는 날 개인이 상투를 잡는다.</p>
+          <ul class="t2-list">
+            <li><span class="t2-li-d">→</span><span>매수·매도 호가창(Level 2) 읽기</span></li>
+            <li><span class="t2-li-d">→</span><span>외국인 선물 → 코스피 방향 2~3주 선행</span></li>
+            <li><span class="t2-li-d">→</span><span>기관 프로그램 매매 시간대 패턴</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t2-stage">
+        <div class="t2-stage-h">
+          <div class="t2-stage-ico">📈</div>
+          <div><div class="t2-stage-l">필수 2</div><div class="t2-stage-n">기술적 분석</div></div>
+        </div>
+        <div class="t2-stage-b">
+          <p>차트는 도구일 뿐. 거래량이 먼저 말한다. 차트보다 거래량 먼저 보기.</p>
+          <ul class="t2-list">
+            <li><span class="t2-li-d">→</span><span>이동평균선 20/60/120일 정배열·역배열</span></li>
+            <li><span class="t2-li-d">→</span><span>RSI 30 과매도 / 70 과매수 역추세 신호</span></li>
+            <li><span class="t2-li-d">→</span><span>볼린저밴드 하단 + 거래량 급증 = 반전</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t2-stage">
+        <div class="t2-stage-h">
+          <div class="t2-stage-ico">📋</div>
+          <div><div class="t2-stage-l">필수 3</div><div class="t2-stage-n">기본적 분석</div></div>
+        </div>
+        <div class="t2-stage-b">
+          <p>주가는 단기엔 감정, 장기엔 이익을 따라간다. 이익이 성장하는 기업이 결국 승리.</p>
+          <ul class="t2-list">
+            <li><span class="t2-li-d">→</span><span>PER: 낮을수록 저평가, 섹터 평균 비교</span></li>
+            <li><span class="t2-li-d">→</span><span>ROE 15%+ 지속 = 경쟁우위</span></li>
+            <li><span class="t2-li-d">→</span><span>EPS 3년 연속 성장 = 구조적 성장주</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t2-stage">
+        <div class="t2-stage-h">
+          <div class="t2-stage-ico">🌍</div>
+          <div><div class="t2-stage-l">필수 4</div><div class="t2-stage-n">매크로 이해</div></div>
+        </div>
+        <div class="t2-stage-b">
+          <p>개별 종목이 좋아도 매크로 역풍이 불면 이긴다. 조류 방향을 먼저 파악.</p>
+          <ul class="t2-list">
+            <li><span class="t2-li-d">→</span><span><b style="color:var(--white);">금리↑</b> → 성장주 밸류 압박 → 가치주 강세</span></li>
+            <li><span class="t2-li-d">→</span><span><b style="color:var(--white);">달러 강세</b> → 신흥국 자금 유출</span></li>
+            <li><span class="t2-li-d">→</span><span><b style="color:var(--white);">VIX 20+</b> → 리스크오프 → 방어주·금</span></li>
+            <li><span class="t2-li-d">→</span><span><b style="color:var(--white);">공포탐욕 80+</b> → 비중 축소 준비</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t2-stage">
+        <div class="t2-stage-h t2-stage-hgold">
+          <div class="t2-stage-ico">🛡️</div>
+          <div><div class="t2-stage-l" style="color:var(--gold2);">필수 5 · 가장 중요</div><div class="t2-stage-n" style="color:var(--gold3);">리스크 관리</div></div>
+        </div>
+        <div class="t2-stage-b">
+          <p>수익 내는 법보다 <b>잃지 않는 법</b>이 먼저. 아래 3가지가 전부.</p>
+          <ul class="t2-list">
+            <li><span class="t2-li-d" style="color:var(--gold2);">①</span><span><b style="color:var(--white);">포지션 사이징</b> — 단일 종목 최대 20%</span></li>
+            <li><span class="t2-li-d" style="color:var(--gold2);">②</span><span><b style="color:var(--white);">손절 기준</b> — 진입 전 확정. -5% 예외 없음</span></li>
+            <li><span class="t2-li-d" style="color:var(--gold2);">③</span><span><b style="color:var(--white);">MDD 관리</b> — 하루 -2% 매매 중단, 월 -8% 휴식</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 03 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">03</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 3 · System</div>
+          <div class="t2-stit">나만의 매매 원칙서</div>
+        </div>
+      </div>
+
+      <div class="t2-card t2-card-gold">
+        <div class="t2-cbody">
+          <p>상위 3%는 모두 <b class="hi">문서화된 규칙</b>을 가진다. 규칙 없으면 매번 감정이 결정. 감정이 결정하면 반드시 망한다.</p>
+        </div>
+      </div>
+
+      <div class="t2-rb">
+        <div class="t2-rbh"><span class="tag tg" style="background:rgba(201,168,76,.15);color:var(--gold2);border:1px solid rgba(201,168,76,.25);">📋</span><span class="t2-rbt">Trading Rule Book 템플릿</span></div>
+        <div class="t2-rbi"><span class="t2-rbk">진입 조건</span><div class="t2-rbc"><div class="t2-rbt2">3가지 동시 충족 시만 매수</div><div class="t2-rbd">외국인 3일 순매수 + 거래량 200%+ + RSI 50 상승추세</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">손절 기준</span><div class="t2-rbc"><div class="t2-rbt2">-5% 자동 손절 · 예외 없음</div><div class="t2-rbd">"이번만은 기다려보자"가 가장 위험. 원칙은 원칙이다.</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">익절 기준</span><div class="t2-rbc"><div class="t2-rbt2">+10% 50%, +20% 나머지</div><div class="t2-rbd">분할 익절이 심리적 안정적. 한 번 전량 익절 금물.</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">포지션</span><div class="t2-rbc"><div class="t2-rbt2">단일 20% 최대, 동시 5종목 최대</div><div class="t2-rbd">집중과 분산의 균형.</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">매매 금지</span><div class="t2-rbc"><div class="t2-rbt2">하루 -2% 시 당일 즉시 중단</div><div class="t2-rbd">손실 후 만회 매매는 통계적으로 손실 확대.</div></div></div>
+      </div>
+    </div>
+
+    <!-- SECTION 04 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">04</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 4 · Profit</div>
+          <div class="t2-stit">주/월 수익 구조</div>
+        </div>
+      </div>
+
+      <div class="t2-lv-grid">
+        <div class="t2-lv"><div class="t2-lv-badge lv-nov">초보</div><div class="t2-lv-i"><div class="t2-lv-n">생존 단계</div><div class="t2-lv-d">원금 보전이 목표. 시스템 구축 중.</div></div><div class="t2-lv-p"><div class="t2-lv-pct" style="color:rgba(255,255,255,.3);">0~±5%</div><div class="t2-lv-r">월 수익</div></div></div>
+        <div class="t2-lv"><div class="t2-lv-badge lv-mid">중급</div><div class="t2-lv-i"><div class="t2-lv-n">안정적 수익 시작</div><div class="t2-lv-d">시스템 작동 시작. 연 24~60%.</div></div><div class="t2-lv-p"><div class="t2-lv-pct" style="color:#4a8fe0;">+2~5%</div><div class="t2-lv-r">월 수익</div></div></div>
+        <div class="t2-lv"><div class="t2-lv-badge lv-adv">고급</div><div class="t2-lv-i"><div class="t2-lv-n">상위 10%</div><div class="t2-lv-d">자신만의 엣지. 연 60~120%.</div></div><div class="t2-lv-p"><div class="t2-lv-pct" style="color:var(--gold2);">+5~10%</div><div class="t2-lv-r">월 수익</div></div></div>
+        <div class="t2-lv" style="border-color:rgba(61,186,122,.25);"><div class="t2-lv-badge lv-eli">상위 3%</div><div class="t2-lv-i"><div class="t2-lv-n">엘리트</div><div class="t2-lv-d">꾸준히 연 30%+. 복리 폭발.</div></div><div class="t2-lv-p"><div class="t2-lv-pct" style="color:#3dba7a;">+10%+</div><div class="t2-lv-r">월 수익</div></div></div>
+      </div>
+
+      <div class="t2-truth">
+        <div class="t2-truth-l">9억 기준 월 수익 시뮬레이션</div>
+        <div class="t2-truth-t">
+          월 <em>1% = 900만원</em>&nbsp;·&nbsp;월 <em>2% = 1,800만원</em>&nbsp;·&nbsp;월 <em>3% = 2,700만원</em><br>
+          처음엔 <em>월 1~2%를 목표</em>로 하세요. 연 <em>12~24%</em>입니다.
+        </div>
+      </div>
+
+      <div class="t2-card">
+        <div class="t2-chead"><span class="tg tb">📅 주간 루틴</span><span class="ct" style="color:var(--white);">스윙 트레이딩 주간 사이클</span></div>
+        <div style="padding:12px;">
+          <div class="t2-rt"><div class="t2-rtt">월요일</div><div><div class="t2-rti">주간 매크로 확인 + 후보 선정</div><div class="t2-rtd">간밤 미국 · 이번주 이벤트 · 수급 방향. 3~5종목 선정.</div></div></div>
+          <div class="t2-rt"><div class="t2-rtt">화요일</div><div><div class="t2-rti">진입 타이밍 탐색</div><div class="t2-rtd">기술적 분석. 진입가·손절·익절 사전 확정.</div></div></div>
+          <div class="t2-rt"><div class="t2-rtt">수~목</div><div><div class="t2-rti">포지션 관리</div><div class="t2-rtd">모니터링. 원칙 벗어나면 즉각 손절.</div></div></div>
+          <div class="t2-rt" style="margin-bottom:0;"><div class="t2-rtt">금요일</div><div><div class="t2-rti">주간 결산 + 일지 작성</div><div class="t2-rtd">원인 분석. 다음주 계획.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 05 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">05</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 5 · Daily Routine</div>
+          <div class="t2-stit">매일 아침 루틴</div>
+        </div>
+      </div>
+
+      <div class="t2-card t2-card-gold">
+        <div class="t2-cbody">
+          <p>상위 3%의 차이는 <b class="hi">장 시작 전 2시간</b>에서 만들어진다. 시장이 열릴 때 이미 모든 결정이 끝나 있어야 한다.</p>
+        </div>
+      </div>
+
+      <div class="t2-rt"><div class="t2-rtt">07:00</div><div><div class="t2-rti">🌐 간밤 미국 증시 · 선물 확인</div><div class="t2-rtd">S&P500 · 나스닥 · 필라델피아반도체만 보면 방향 파악</div></div></div>
+      <div class="t2-rt"><div class="t2-rtt">07:20</div><div><div class="t2-rti">📊 Today 투자가이드 확인</div><div class="t2-rtd">핵심 뉴스 · 수급 · 이벤트 캘린더 파악</div></div></div>
+      <div class="t2-rt"><div class="t2-rtt">07:40</div><div><div class="t2-rti">🏦 외국인·기관 수급 체크</div><div class="t2-rtd">전일 수급 방향. 외국인이 사는 섹터 = 오늘 주도 섹터</div></div></div>
+      <div class="t2-rt"><div class="t2-rtt">08:00</div><div><div class="t2-rti">🎯 오늘 매매 종목 최종 선정</div><div class="t2-rtd">3~5종목. 진입가·손절·익절 사전 확정</div></div></div>
+      <div class="t2-rt"><div class="t2-rtt">08:30</div><div><div class="t2-rti">📋 오늘 트레이딩 일지 양식 준비</div><div class="t2-rtd">매매 전 기록 습관. 왜 사는지 한 줄 작성</div></div></div>
+      <div class="t2-rt"><div class="t2-rtt">09:00</div><div><div class="t2-rti">⏸ 장 시작 후 30분 관망</div><div class="t2-rtd">절대 오픈 동시 매매 금지. 방향 확인 후 진입</div></div></div>
+    </div>
+
+    <!-- SECTION 06 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">06</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 6 · Forbidden</div>
+          <div class="t2-stit">절대 금기 8가지</div>
+        </div>
+      </div>
+
+      <div class="t2-fb-grid">
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">뇌동매매</div><div class="t2-fbd">"남이 사니까 나도" — 가장 흔한 실패</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">물타기</div><div class="t2-fbd">손실 종목에 추가 매수. 원칙 위반</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">손절 미루기</div><div class="t2-fbd">작은 손실을 큰 손실로 만드는 마법</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">레버리지 과용</div><div class="t2-fbd">수익 2배 전에 손실이 2배</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">단일 종목 집중</div><div class="t2-fbd">50%+ 집중은 도박이다</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">손실 후 만회 매매</div><div class="t2-fbd">통계적으로 손실을 키움</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">어닝 전 집중 배팅</div><div class="t2-fbd">결과 확인 후 진입이 원칙</div></div></div>
+        <div class="t2-fb"><div class="t2-fbi">🚫</div><div><div class="t2-fbt">추천 맹신</div><div class="t2-fbd">독립적 판단이 전부</div></div></div>
+      </div>
+    </div>
+
+    <!-- SECTION 07 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">07</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 7 · Journal</div>
+          <div class="t2-stit">트레이딩 일지</div>
+        </div>
+      </div>
+
+      <div class="t2-card t2-card-gold">
+        <div class="t2-cbody">
+          <p>상위 3%가 평범한 트레이더와 가장 다른 점 하나 — <b class="hi">매일 일지를 쓴다</b>. 일지가 1년 쌓이면 패턴이 보인다.</p>
+        </div>
+      </div>
+
+      <div class="t2-rb">
+        <div class="t2-rbh"><span class="tg" style="background:rgba(201,168,76,.15);color:var(--gold2);border:1px solid rgba(201,168,76,.25);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.09em;">📓</span><span class="t2-rbt">일지 작성 양식</span></div>
+        <div class="t2-rbi"><span class="t2-rbk">날짜·종목</span><div class="t2-rbc"><div class="t2-rbt2">2026.04.23 / SK하이닉스 / 매수 1,220,000</div><div class="t2-rbd">정확한 날짜·종목·진입가</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">진입 이유</span><div class="t2-rbc"><div class="t2-rbt2">한 줄로 명확하게</div><div class="t2-rbd">"어닝 비트 + 외국인 +2.2조 + 20일선 지지"</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">손절·익절</span><div class="t2-rbc"><div class="t2-rbt2">손절 1,159,000 / 익절 1,342,000</div><div class="t2-rbd">진입 전 확정. 변경 금지</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">결과</span><div class="t2-rbc"><div class="t2-rbt2">1,262,000원 (+3.19%) 장중 매도</div><div class="t2-rbd">실제 결과와 원칙 준수 여부</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">감정 체크</span><div class="t2-rbc"><div class="t2-rbt2">어닝 전 불안 → 원칙 유지 ✅</div><div class="t2-rbd">언제 흔들리는지 패턴 발견</div></div></div>
+        <div class="t2-rbi"><span class="t2-rbk">반성</span><div class="t2-rbc"><div class="t2-rbt2">1차 익절가에서 분할 익절했어야</div><div class="t2-rbd">잘된 것과 아쉬운 것 솔직하게</div></div></div>
+      </div>
+    </div>
+
+    <!-- SECTION 08 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">08</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 8 · Roadmap</div>
+          <div class="t2-stit">9억 → 100억 로드맵</div>
+        </div>
+      </div>
+
+      <div class="t2-rm">
+        <div class="t2-rmi">
+          <div class="t2-rmd"></div>
+          <div class="t2-rmy">1년차 · 시스템 구축</div>
+          <div class="t2-rmt">학습 + 모의투자 + 소액 실전</div>
+          <div class="t2-rmd2">전체 10% 이내 실전. 원금 보전이 성공. 일지 365일.</div>
+          <div class="t2-rmtg">목표: 연 +10~15% → 10억</div>
+        </div>
+        <div class="t2-rmi">
+          <div class="t2-rmd"></div>
+          <div class="t2-rmy">2년차 · 시스템 정교화</div>
+          <div class="t2-rmt">비중 확대 + 스타일 확립</div>
+          <div class="t2-rmd2">30% → 50% 단계적 확대. 엣지 종목·섹터 발견.</div>
+          <div class="t2-rmtg">목표: 연 +20~30% → 12억</div>
+        </div>
+        <div class="t2-rmi">
+          <div class="t2-rmd"></div>
+          <div class="t2-rmy">3년차 · 엣지 확보</div>
+          <div class="t2-rmt">자신만의 스타일 완성</div>
+          <div class="t2-rmd2">반복 통하는 패턴 확립. 수급·차트·펀더멘털 통합.</div>
+          <div class="t2-rmtg">목표: 연 +30~40% → 16억</div>
+        </div>
+        <div class="t2-rmi">
+          <div class="t2-rmd"></div>
+          <div class="t2-rmy">4~5년차 · 복리 폭발</div>
+          <div class="t2-rmt">상위 3% 진입</div>
+          <div class="t2-rmd2">시스템 자동화. 감정 통제 완성. 복리가 선물을 가져옴.</div>
+          <div class="t2-rmtg">목표: 20억 → 30억</div>
+        </div>
+        <div class="t2-rmi">
+          <div class="t2-rmd" style="background:#3dba7a;box-shadow:0 0 0 3px rgba(61,186,122,.2);"></div>
+          <div class="t2-rmy" style="color:#3dba7a;">7~10년차 · 복리의 기적</div>
+          <div class="t2-rmt">진정한 자산가</div>
+          <div class="t2-rmd2">9억이 연 30%로 10년이면 이론상 128억. 현실적 60~80억.</div>
+          <div class="t2-rmtg" style="color:#3dba7a;border-color:rgba(61,186,122,.3);">목표: 60~100억</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 09 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">09</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 9 · Golden Rules</div>
+          <div class="t2-stit">황금 법칙 10</div>
+        </div>
+      </div>
+
+      <div class="t2-gr"><div class="t2-gn">1</div><div><div class="t2-gt">원칙이 감정을 이긴다</div><div class="t2-gd">매매 원칙서 작성. 감정 흔들릴 때 원칙을 본다.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">2</div><div><div class="t2-gt">손절은 비용이지 실패가 아니다</div><div class="t2-gd">-5% 10번보다 -50% 한 번이 더 파괴적.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">3</div><div><div class="t2-gt">외국인이 사는 곳에 있어라</div><div class="t2-gd">외국인 순매수 상위 = 방향성 확인. 수급이 펀더멘털보다 먼저.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">4</div><div><div class="t2-gt">탐욕지수 80+는 팔 시점</div><div class="t2-gd">극단탐욕에서 산 사람이 상투를 잡는다.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">5</div><div><div class="t2-gt">이익이 성장하는 기업만 산다</div><div class="t2-gd">3분기 연속 EPS 성장 + 외국인 매수 = 가장 안전.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">6</div><div><div class="t2-gt">매크로 조류 방향을 먼저 확인</div><div class="t2-gd">금리·달러·VIX가 불리하면 좋은 종목도 힘들다.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">7</div><div><div class="t2-gt">복리는 인내에게 주는 상이다</div><div class="t2-gd">연 30%로 10년이면 원금의 13배. 꾸준함이 빠름.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">8</div><div><div class="t2-gt">모든 매매를 기록하라</div><div class="t2-gd">일지 없이 성장 없다. 5년 후 결정적 차이.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">9</div><div><div class="t2-gt">현금은 포지션이다</div><div class="t2-gd">15% 현금은 게으름이 아니라 기회 대비 전략.</div></div></div>
+      <div class="t2-gr"><div class="t2-gn">10</div><div><div class="t2-gt">시장은 항상 옳다</div><div class="t2-gd">시장 탓 하는 순간 성장이 멈춘다.</div></div></div>
+    </div>
+
+    <!-- SECTION 10 · 종합분석 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">10</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 10 · Synthesis</div>
+          <div class="t2-stit">종합 분석</div>
+        </div>
+      </div>
+
+      <div class="t2-card t2-card-gold">
+        <div class="t2-chead"><span class="tg" style="background:rgba(201,168,76,.15);color:var(--gold2);border:1px solid rgba(201,168,76,.25);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.09em;">🎯</span><span class="ct" style="color:var(--white);">엘리트 탑 트레이더의 완전한 방정식</span></div>
+        <div class="t2-cbody">
+          <p style="margin-bottom:14px;"><b class="hi">성공 = 마인드셋 × 시스템 × 기록 × 시간</b></p>
+          <p>네 가지 요소 중 하나라도 0이면 결과는 0. 특히 <b>시간(복리)</b>은 절대 단축 불가. 10년 걸리는 것을 3년에 하려 하면 반드시 망한다.</p>
+        </div>
+      </div>
+
+      <div class="t2-card">
+        <div class="t2-chead"><span class="tg" style="background:rgba(74,143,224,.1);color:#4a8fe0;border:1px solid rgba(74,143,224,.2);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.09em;">📊</span><span class="ct" style="color:var(--white);">핵심 지표 5가지 — 매일 확인</span></div>
+        <div class="t2-cbody">
+          <ul class="t2-list">
+            <li><span class="t2-li-d">①</span><span><b style="color:var(--white);">외국인 수급 방향</b> — 방향성이 확인된 것만 매매</span></li>
+            <li><span class="t2-li-d">②</span><span><b style="color:var(--white);">공포탐욕지수 (F&G)</b> — 80+ 매도, 20- 매수</span></li>
+            <li><span class="t2-li-d">③</span><span><b style="color:var(--white);">VIX 지수</b> — 20 돌파 시 즉각 리스크 축소</span></li>
+            <li><span class="t2-li-d">④</span><span><b style="color:var(--white);">US10Y 금리</b> — 4.5%+ 돌파 시 성장주 전면 축소</span></li>
+            <li><span class="t2-li-d">⑤</span><span><b style="color:var(--white);">달러인덱스 DXY</b> — 강세 지속 시 신흥국 회피</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t2-card">
+        <div class="t2-chead"><span class="tg" style="background:rgba(61,186,122,.1);color:#3dba7a;border:1px solid rgba(61,186,122,.2);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.09em;">💎</span><span class="ct" style="color:var(--white);">투자 철학 — 3원칙 요약</span></div>
+        <div class="t2-cbody">
+          <p><b style="color:var(--white);">원칙 1 · 지키는 것이 먼저다</b><br>큰 손실을 피하는 것이 큰 수익을 내는 것보다 중요. -50%는 +100%로만 복구된다.</p>
+          <p style="margin-top:12px;"><b style="color:var(--white);">원칙 2 · 군중과 반대로 움직여라</b><br>모두가 탐욕스러울 때 두려워하고, 모두가 두려울 때 탐욕스러워져라. 공포탐욕지수가 80+일 때 산 사람이 상투를 잡는다.</p>
+          <p style="margin-top:12px;"><b style="color:var(--white);">원칙 3 · 이익이 성장하는 곳에 있어라</b><br>주가는 단기엔 감정, 장기엔 이익을 따라간다. 분기마다 EPS가 성장하는 기업만 골라도 연 30%는 가능하다.</p>
+        </div>
+      </div>
+
+      <div class="t2-gv">
+        <div class="t2-gvl">전문가 최종 메시지 · Grand Verdict</div>
+        <div class="t2-gvt">
+          "트레이딩은 기술이 아니라 <em>습관</em>이다.<br>
+          매일 같은 루틴, 같은 원칙, 같은 기록.<br>
+          이것을 <em>2년 이상 지속하면</em><br>
+          시장이 수업료를 돌려준다.<br><br>
+          당신은 이미 <em>Today 투자가이드</em>를 매일 보고 있다.<br>
+          그것이 상위 3%로 가는 <em>첫 번째 계단</em>이다."
+        </div>
+        <div class="t2-gva">— Snowball 엘리트 트레이더 가이드</div>
+      </div>
+    </div>
+
+    <!-- SECTION 11 -->
+    <div class="t2-section">
+      <div class="t2-sh">
+        <div class="t2-snum">11</div>
+        <div class="t2-sinfo">
+          <div class="t2-stag">Stage 11 · Action</div>
+          <div class="t2-stit">지금 당장 체크리스트</div>
+        </div>
+      </div>
+
+      <ul class="t2-chk">
+        <li><span class="t2-ci chkd">✅</span><span><b style="color:var(--white);">Today 투자가이드</b> 매일 확인 — 이미 하는 중</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">매매 원칙서</b> 작성 — A4 1장, 지금 당장</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">트레이딩 일지</b> 시작 — 오늘부터 매매마다 기록</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">HTS 모의투자</b> 3개월 — 실전 전 시스템 검증</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">공포탐욕지수</b> 매일 확인 — CNN F&G 북마크</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">외국인 수급</b> 매일 확인 — HTS 투자자동향</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">VIX 20 경계선</b> 설정 — 돌파 시 즉각 축소</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">손절 원칙</b> 문서화 — -5% 자동 손절</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">투자 도서</b> 월 1권 — 버핏·피터린치·미너비니</span></li>
+        <li><span class="t2-ci chkt">○</span><span><b style="color:var(--white);">월간 수익률 목표</b> 설정 — 현실적 1~2%</span></li>
+      </ul>
+
+      <div class="t2-card t2-card-gold" style="margin-top:16px;">
+        <div class="t2-cbody" style="text-align:center;">
+          <p style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--white);line-height:1.8;">
+            "1년 뒤 당신은 오늘의 당신을 돌아보며<br>
+            <b class="hi">이 체크리스트를 시작한 날</b>을 감사하게 될 것이다."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div><!-- /t2-content -->
+
+  <div class="t2-ft">
+    <p>엘리트 탑 트레이더 가이드 · Snowball · 2026 Edition</p>
+    <p style="color:rgba(201,168,76,.3);margin-top:4px;">본 가이드는 투자 참고 정보이며 최종 판단 및 손익은 본인 책임입니다</p>
+  </div>
+</div><!-- /tab2 -->
 
 <script>
-// Progress bar
+// Tab switcher
+function switchTab(n){
+  const btns=document.querySelectorAll('.tab-btn');
+  const panels=document.querySelectorAll('.panel');
+  btns.forEach((b,i)=>{
+    b.classList.toggle('active',i===n-1);
+    b.classList.toggle('tab2-active',i===1&&n===2);
+  });
+  panels.forEach((p,i)=>p.classList.toggle('active',i===n-1));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+// Progress
 window.addEventListener('scroll',()=>{
   const d=document.documentElement;
   document.getElementById('prog').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
