@@ -316,12 +316,126 @@ h1.headline em{font-style:italic;font-weight:400;color:var(--coral-deep);font-va
 .strip-cell .val{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
 .strip-cell .chg{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;margin-top:2px}
 
+/* COUNTRY GRID — TAB 4 */
 .note-box{
   background:rgba(204,120,92,.05);border-left:3px solid var(--coral);
   padding:16px 22px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;
   margin-top:14px;border-radius:0 4px 4px 0
 }
 .note-box strong{color:var(--ink);font-weight:600}
+
+.country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:900px){.country-grid{grid-template-columns:1fr}}
+
+.country-card{
+  background:#FBF8F0;
+  border:1px solid var(--rule);
+  border-radius:8px;
+  padding:0;
+  position:relative;
+  overflow:hidden;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.country-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--coral-soft)}
+.country-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg, var(--coral), var(--coral-deep));
+  opacity:.7
+}
+
+.country-head{
+  display:flex;align-items:center;gap:14px;
+  padding:20px 24px 18px;
+  border-bottom:1.5px solid var(--ink);
+  background:linear-gradient(180deg, rgba(204,120,92,.04), transparent);
+  position:relative;
+}
+.country-head .flag{font-size:34px;line-height:1;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
+.country-head .country-meta-block{flex:1;min-width:0}
+.country-head h3{
+  font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:var(--ink);
+  letter-spacing:-.015em;line-height:1.1;margin-bottom:4px;
+  font-variation-settings:"opsz" 80
+}
+.country-head h3 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:16px;color:var(--ink-mute);margin-left:4px}
+.country-head .exch{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+.country-head .crank{
+  font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--coral-deep);
+  border:1px solid var(--coral);border-radius:50%;width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-weight:500;background:var(--paper);
+}
+
+.cs-block{padding:18px 24px;border-bottom:1px dashed var(--rule)}
+.cs-block:last-child{border-bottom:none;padding-bottom:22px}
+.cs-label{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;
+  color:var(--coral-deep);text-transform:uppercase;font-weight:600;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px
+}
+.cs-label::before{content:"";width:14px;height:1px;background:var(--coral)}
+
+.idx-list{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.idx-row{
+  display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:baseline;
+  padding:6px 0;border-bottom:1px dotted var(--rule-soft);
+}
+.idx-row:last-child{border-bottom:none}
+.idx-name{font-family:'DM Sans',sans-serif;font-weight:500;font-size:13px;color:var(--ink)}
+.idx-name small{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);margin-left:4px;letter-spacing:.04em;font-weight:400}
+.idx-val{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:var(--ink);letter-spacing:-.005em}
+.idx-chg{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:1px 6px;border-radius:3px;min-width:62px;text-align:center}
+.idx-chg.up{color:#7A2A1F;background:rgba(154,58,44,.08)}
+.idx-chg.dn{color:#1F4E45;background:rgba(31,78,69,.08)}
+.idx-chg.neu{color:var(--ink-mute);background:rgba(107,101,88,.08)}
+
+.cs-issue{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15.5px;
+  color:var(--ink-soft);line-height:1.55;margin-top:8px;
+  padding-left:10px;border-left:2px solid var(--coral-soft)
+}
+
+.company-row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding:8px 12px;background:rgba(204,120,92,.06);border-radius:5px;margin-bottom:10px;flex-wrap:wrap
+}
+.company-row .cn{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--ink);letter-spacing:-.01em}
+.company-row .cn small{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);margin-left:6px;font-weight:500;letter-spacing:.04em}
+.company-row .cap{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--coral-deep);font-weight:600;letter-spacing:.02em}
+
+.hidden-pick{
+  display:grid;grid-template-columns:auto 1fr;gap:14px;
+  padding:12px 0;border-bottom:1px dotted var(--rule-soft)
+}
+.hidden-pick:last-child{border-bottom:none}
+.hp-num{
+  font-family:'Fraunces',serif;font-style:italic;font-size:24px;font-weight:400;
+  color:var(--coral);line-height:1;font-variation-settings:"opsz" 144
+}
+.hp-body .hp-name{
+  font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:var(--ink);
+  display:block;margin-bottom:4px;letter-spacing:-.01em;line-height:1.25
+}
+.hp-body .hp-name small{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-mute);margin-left:5px;font-weight:500;letter-spacing:.04em}
+.hp-body .hp-content{font-size:12.5px;color:var(--ink-soft);line-height:1.55;font-family:'DM Sans',sans-serif}
+
+/* OVERVIEW STRIP for Tab 4 */
+.world-strip{
+  display:grid;grid-template-columns:repeat(11,1fr);gap:0;
+  border:1px solid var(--ink);border-radius:6px;overflow:hidden;background:#FBF8F0;
+  margin-bottom:24px
+}
+@media(max-width:1100px){.world-strip{grid-template-columns:repeat(6,1fr)}}
+@media(max-width:680px){.world-strip{grid-template-columns:repeat(3,1fr)}}
+.ws-cell{padding:10px 8px;border-right:1px solid var(--rule);text-align:center;cursor:pointer;transition:background .2s ease}
+.ws-cell:last-child{border-right:none}
+.ws-cell:hover{background:rgba(204,120,92,.06)}
+.ws-cell .wsf{font-size:18px;line-height:1;margin-bottom:4px}
+.ws-cell .wsn{font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:var(--ink);margin-bottom:2px;letter-spacing:-.01em}
+.ws-cell .wsv{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-mute);font-weight:500}
+.ws-cell .wsc{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;margin-top:1px}
+.ws-cell .wsc.up{color:#7A2A1F}
+.ws-cell .wsc.dn{color:#1F4E45}
 
 </style>
 </head>
@@ -365,6 +479,10 @@ h1.headline em{font-style:italic;font-weight:400;color:var(--coral-deep);font-va
       <button class="tab-btn" data-tab="t3">
         <span class="num">03 / TRADING</span>
         <span>트레이딩 가이드</span>
+      </button>
+      <button class="tab-btn" data-tab="t4">
+        <span class="num">04 / GLOBAL</span>
+        <span>주요국 스크린</span>
       </button>
     </div>
   </nav>
@@ -1063,6 +1181,591 @@ h1.headline em{font-style:italic;font-weight:400;color:var(--coral-deep);font-va
         <p style="margin-top:10px"><strong style="font-style:normal">핵심 테마 우선순위:</strong> AI 반도체 ▶ 에너지 ▶ 방산 ▶ 전력기기 ▶ 소비재(어닝 비트 종목 限).</p>
       </div>
     </div>
+  </section>
+
+  <!-- ============ TAB 4 : GLOBAL SCREEN ============ -->
+  <section id="t4" class="section">
+
+    <div class="sec-head">
+      <span class="idx">04.A</span>
+      <h2>주요국 한눈에 — World Snapshot</h2>
+      <span class="meta">11 Markets · 4/28 close</span>
+    </div>
+
+    <div class="world-strip">
+      <div class="ws-cell" onclick="document.getElementById('c-us').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇺🇸</div><div class="wsn">미국</div><div class="wsv">S&amp;P 7,138</div><div class="wsc dn">−0.49%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-cn').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇨🇳</div><div class="wsn">중국</div><div class="wsv">상해 4,078</div><div class="wsc dn">−0.19%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-hk').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇭🇰</div><div class="wsn">홍콩</div><div class="wsv">항셍 25,679</div><div class="wsc dn">−0.95%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-tw').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇹🇼</div><div class="wsn">대만</div><div class="wsv">가권 39,616</div><div class="wsc up">+1.76%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-jp').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇯🇵</div><div class="wsn">일본</div><div class="wsv">닛케이 59,917</div><div class="wsc dn">−1.02%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-sg').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇸🇬</div><div class="wsn">싱가폴</div><div class="wsv">STI 4,739</div><div class="wsc up">+0.32%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-vn').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇻🇳</div><div class="wsn">베트남</div><div class="wsv">VN 1,876</div><div class="wsc up">+1.23%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-de').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇩🇪</div><div class="wsn">독일</div><div class="wsv">DAX 24,036</div><div class="wsc dn">−0.19%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-uk').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇬🇧</div><div class="wsn">영국</div><div class="wsv">FTSE 10,339</div><div class="wsc up">+0.18%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-ca').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇨🇦</div><div class="wsn">캐나다</div><div class="wsv">TSX 33,818</div><div class="wsc dn">−0.20%</div>
+      </div>
+      <div class="ws-cell" onclick="document.getElementById('c-id').scrollIntoView({behavior:'smooth',block:'center'})">
+        <div class="wsf">🇮🇩</div><div class="wsn">인니</div><div class="wsv">JCI 7,057</div><div class="wsc dn">−0.70%</div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:0;margin-bottom:24px">
+      <strong>금일의 글로벌 테마:</strong> 🇹🇼 대만이 사상최초 4만pt 돌파(AI 인프라 붐), 🇻🇳 베트남이 FTSE EM 편입 임박(+53% YoY)으로 강세. 반면 🇯🇵 일본은 BOJ 인플레 상향에 차익실현, 🇮🇩 인도네시아는 7거래일 연속 하락(재정 우려)으로 부진. 🇺🇸 미국은 빅테크 어닝 대기 차익실현. <strong>오늘의 매크로 트리거 — UAE OPEC+ 탈퇴(5/1) + 빅테크 어닝(4/29~)</strong>이 모든 시장에 동시 작용.
+    </div>
+
+    <div class="sec-head" style="margin-top:32px">
+      <span class="idx">04.B</span>
+      <h2>주요국 상세 분석 — Country Deep-Dive</h2>
+      <span class="meta">Indices · Top Pick · Hidden Gems</span>
+    </div>
+
+    <div class="country-grid">
+
+      <!-- ━━ 미국 ━━ -->
+      <div class="country-card" id="c-us">
+        <div class="country-head">
+          <span class="flag">🇺🇸</span>
+          <div class="country-meta-block">
+            <h3>미국 <em>United States</em></h3>
+            <div class="exch">NYSE · NASDAQ · CBOE · AMEX</div>
+          </div>
+          <div class="crank">N°1</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">S&amp;P 500 <small>SPX</small></span><span class="idx-val">7,138.80</span><span class="idx-chg dn">−0.49%</span></div>
+            <div class="idx-row"><span class="idx-name">NASDAQ Composite <small>IXIC</small></span><span class="idx-val">24,663.80</span><span class="idx-chg dn">−0.90%</span></div>
+            <div class="idx-row"><span class="idx-name">Dow Jones Industrial <small>DJIA</small></span><span class="idx-val">49,141.93</span><span class="idx-chg dn">−0.05%</span></div>
+            <div class="idx-row"><span class="idx-name">Russell 2000 <small>RUT</small></span><span class="idx-val">2,762.42</span><span class="idx-chg dn">−1.26%</span></div>
+            <div class="idx-row"><span class="idx-name">NYSE Composite <small>NYA</small></span><span class="idx-val">22,905.46</span><span class="idx-chg dn">−0.13%</span></div>
+          </div>
+          <p class="cs-issue">사상최고권에서 차익실현. 4/29~5/1 매그니피선트 7 어닝 슈퍼위크가 5월 방향 결정. WSJ의 OpenAI 매출 부진 보도가 AI 인프라株에 단기 충격(오라클 −5.2%). UAE OPEC+ 5/1 탈퇴 + 호르무즈 긴장 → 유가 100불 재돌파. 인플레 재점화 우려에 VIX 19로 반등.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">NVIDIA Corp. <small>NVDA</small></span>
+            <span class="cap">시총 $4.5T · PER 48배</span>
+          </div>
+          <p class="cs-issue">미국 시총 1위. AI 칩 설계 사실상 독점, GB300 Blackwell 양산 본격화. 데이터센터 매출 YoY +85%. 4/27 +4% 갭업으로 $152대 진입. 5/28 어닝 임박, AI Capex 가이던스가 핵심. 단기 과열이지만 5년 EPS CAGR 35% 추정. 1년 컨센 목표가 $175(+15%).</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Palantir Technologies <small>PLTR</small></span>
+              <p class="hp-content">정부·국방 AI 플랫폼 선두주자. Foundry/AIP 매출 +50% 성장, 미 정부 계약 백로그 사상최대 $9B 돌파. 상용 부문 +75% 폭증. 단점: PER 200배 고밸류라 분할매수 필수. 1년 목표 +25%, 5년 +200% 잠재력.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Vertiv Holdings <small>VRT</small></span>
+              <p class="hp-content">AI 데이터센터 냉각·전력 인프라 글로벌 1위. 수주잔고 +60%. 엔비디아 GB300 호환 액체냉각 솔루션 단독 공급사. 25년 매출 +35%, 영업이익률 19% 사상최고. 1년 목표 +35%, AI 인프라 직접 수혜로 변동성 적은 정공법 픽.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 중국 ━━ -->
+      <div class="country-card" id="c-cn">
+        <div class="country-head">
+          <span class="flag">🇨🇳</span>
+          <div class="country-meta-block">
+            <h3>중국 <em>China</em></h3>
+            <div class="exch">SSE 상해 · SZSE 심천 · STAR Market 과창판</div>
+          </div>
+          <div class="crank">N°2</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">상해종합 <small>SSE Composite</small></span><span class="idx-val">4,078.64</span><span class="idx-chg dn">−0.19%</span></div>
+            <div class="idx-row"><span class="idx-name">심천성분 <small>SZSE Component</small></span><span class="idx-val">14,830.46</span><span class="idx-chg dn">−1.10%</span></div>
+            <div class="idx-row"><span class="idx-name">CSI 300 <small>沪深300</small></span><span class="idx-val">4,770.95</span><span class="idx-chg neu">+0.03%</span></div>
+            <div class="idx-row"><span class="idx-name">창업판 <small>ChiNext</small></span><span class="idx-val">3,124.80</span><span class="idx-chg dn">−1.42%</span></div>
+            <div class="idx-row"><span class="idx-name">STAR 50 <small>科创50</small></span><span class="idx-val">1,205.40</span><span class="idx-chg dn">−0.85%</span></div>
+          </div>
+          <p class="cs-issue">상해종합 4,000pt 심리적 저항선 횡보. 정치국 회의에서 에너지 안보 + 외부충격 방어 천명. 메타의 Manus AI 인수 무산 명령으로 외국인 투자 위축. 1Q GDP +5.4% 견조하나 부동산·내수 부진 지속. CATL HK 50억불 증자 가격 레인지 하단 결정.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">Kweichow Moutai 귀주모태 <small>600519.SH</small></span>
+            <span class="cap">시총 ¥2.1T · PER 21배</span>
+          </div>
+          <p class="cs-issue">A주 시총 1위 백주 절대강자. 4/27 −3.85% 차익실현. 25년 매출 +15%, ROE 32% 글로벌 톱. 부유층 소비 회복 + 자사주 매입 ¥30B 발표. 단점: 청년층 음주 감소 구조적 리스크. PER 21배 → 5년래 최저구간, 밸류 매력. 배당수익률 3.5%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">BYD 비야디 <small>002594.SZ / 1211.HK</small></span>
+              <p class="hp-content">글로벌 EV 출하량 1위(테슬라 추월). 25년 매출 +28%, 영업이익률 8.5%. 헝가리·태국·브라질 공장 가동 완료, 27년 글로벌 점유율 18% 목표. 워런 버핏 잔여 지분 보유. 자율주행 'God's Eye' 무료 전 차종 탑재. 1년 목표 +30%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Naura Technology 北方华创 <small>002371.SZ</small></span>
+              <p class="hp-content">중국 반도체 장비 국산화 핵심주. 미국 제재 풍선효과 직격 수혜. SMIC·창신메모리 주요 공급사. 25년 매출 +45%. 식각·박막 장비 자국 점유율 30%로 ASML 대비 후발이지만 정책 자금 수혜로 가속. 1년 목표 +35%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 홍콩 ━━ -->
+      <div class="country-card" id="c-hk">
+        <div class="country-head">
+          <span class="flag">🇭🇰</span>
+          <div class="country-meta-block">
+            <h3>홍콩 <em>Hong Kong</em></h3>
+            <div class="exch">HKEX 메인보드 · GEM</div>
+          </div>
+          <div class="crank">N°3</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">Hang Seng Index 항셍지수 <small>HSI</small></span><span class="idx-val">25,679.78</span><span class="idx-chg dn">−0.95%</span></div>
+            <div class="idx-row"><span class="idx-name">Hang Seng China Ent. <small>HSCE / H주</small></span><span class="idx-val">8,756.32</span><span class="idx-chg dn">−0.22%</span></div>
+            <div class="idx-row"><span class="idx-name">Hang Seng Tech <small>HSTECH</small></span><span class="idx-val">5,684.20</span><span class="idx-chg dn">−1.45%</span></div>
+            <div class="idx-row"><span class="idx-name">GEM Index <small>소형주</small></span><span class="idx-val">12.83</span><span class="idx-chg dn">−0.30%</span></div>
+          </div>
+          <p class="cs-issue">텐센트·SMIC·샤오미 약세로 1% 가까이 하락. CATL의 50억불 증자 가격이 타깃 레인지 하단 결정되며 투자심리 신중. 중국 본토 약세 동조 + AI 규제 강화 우려. 다만 HSI PER 11배 글로벌 최저, FY26 EPS 성장 +11.7% 컨센. 자금은 H주 → 본토 A주로 회귀 흐름.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">Tencent Holdings 텐센트 <small>0700.HK</small></span>
+            <span class="cap">시총 HK$5.2T · PER 16배</span>
+          </div>
+          <p class="cs-issue">항셍 시총 1위 메가캡. 게임·위챗 모멘텀 + 클라우드 흑자전환. 자체 AI 모델 Hunyuan 3.0 공개. 4/28 −1% 단기 차익실현. PER 16배 매력적. 자사주 매입 HK$1,000억 진행 중. 25년 매출 +9%, 영업이익 +18%. 1년 목표 +20%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Meituan 메이투안 <small>3690.HK</small></span>
+              <p class="hp-content">중국 푸드 딜리버리·로컬서비스 1위. 25년 매출 +18%. 알리바바 'Ele.me'와 출혈경쟁 종료, 마진 정상화. Keeta 브랜드로 사우디·브라질 글로벌 진출. PER 25배에서 매출 1.5배로 저평가. 1년 목표 +35%, 차이나 콘슈머 회복 직접 수혜.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">BYD Electronics <small>0285.HK</small></span>
+              <p class="hp-content">비야디 자회사. 애플·삼성 OEM 주력 + 휴머노이드 로봇 부품 신사업 진출. 옵티머스·피규어 부품 공급 보도. 25년 영업이익 +50%, EV·서버 모듈 다각화. PBR 2.1 매력적, 2027년 매출 1,200억 위안 목표. 1년 목표 +40%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 대만 ━━ -->
+      <div class="country-card" id="c-tw">
+        <div class="country-head">
+          <span class="flag">🇹🇼</span>
+          <div class="country-meta-block">
+            <h3>대만 <em>Taiwan</em></h3>
+            <div class="exch">TWSE 가권 · TPEx OTC</div>
+          </div>
+          <div class="crank">★ HOT</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">TAIEX 가권지수 <small>TWSE</small></span><span class="idx-val">39,616.63</span><span class="idx-chg up">+1.76%</span></div>
+            <div class="idx-row"><span class="idx-name">TPEx 上櫃 <small>OTC</small></span><span class="idx-val">282.45</span><span class="idx-chg up">+1.12%</span></div>
+            <div class="idx-row"><span class="idx-name">Taiwan 50 <small>0050</small></span><span class="idx-val">220.50</span><span class="idx-chg up">+1.85%</span></div>
+            <div class="idx-row"><span class="idx-name">FTSE TWSE Tech <small>전자업종</small></span><span class="idx-val">1,150.30</span><span class="idx-chg up">+2.10%</span></div>
+          </div>
+          <p class="cs-issue">사상최초 40,000pt 돌파(장중 40,194 신고가). AI 인프라 붐 + 미국 기술주 강세 후행 동조. 금융감독위의 단일종목 10% 보유 캡 완화 정책으로 TSMC 비중 확대 가능. 25년 산업생산 +28.7% 5년래 최고. TSMC 4/28 −1.1% 단기 차익실현. AI 사이클 정점 논쟁 지속.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">TSMC 대만반도체 <small>2330.TW / TSM</small></span>
+            <span class="cap">시총 NT$24T · PER 22배</span>
+          </div>
+          <p class="cs-issue">TAIEX 시총 비중 40%+ 단일 종목으로 시장을 좌우. 3나노 풀 가동, 2나노 시범 가동 진입. 애리조나·일본 신공장 정상화. AI 칩 매출 YoY +60%. 25년 영업이익률 47% 사상최고. 4/29 빅테크 어닝이 후행 트리거. 자사주 매입 부재가 단점. 1년 목표 +18%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Hon Hai Precision 폭스콘 <small>2317.TW</small></span>
+              <p class="hp-content">AI 서버 ODM 글로벌 점유율 40%, 엔비디아 GB200 시스템 메인 조립사. 자회사 Foxconn EV(MIH 플랫폼) 모멘텀. 25년 AI 매출 비중 30% 돌파. 멕시코·미국 신공장 가동. 애플 의존도 점차 축소. PER 14배. 1년 목표 +28%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">MediaTek 미디어텍 <small>2454.TW</small></span>
+              <p class="hp-content">모바일 SoC 글로벌 2위(퀄컴 추격). 엔비디아와 AI PC 칩 협업 가속화. Dimensity 9500 출시로 플래그십 점유율 확대. 데이터센터용 ASIC 신사업 진입. 25년 매출 +22%, 영업이익률 24%. PER 19배 매력. 1년 목표 +25%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 일본 ━━ -->
+      <div class="country-card" id="c-jp">
+        <div class="country-head">
+          <span class="flag">🇯🇵</span>
+          <div class="country-meta-block">
+            <h3>일본 <em>Japan</em></h3>
+            <div class="exch">TSE Prime · Standard · Growth</div>
+          </div>
+          <div class="crank">N°4</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">Nikkei 225 닛케이 <small>N225</small></span><span class="idx-val">59,917.46</span><span class="idx-chg dn">−1.02%</span></div>
+            <div class="idx-row"><span class="idx-name">TOPIX 도쿄증시 1부 <small>TPX</small></span><span class="idx-val">3,772.19</span><span class="idx-chg up">+0.99%</span></div>
+            <div class="idx-row"><span class="idx-name">JPX-Nikkei 400 <small>품질지수</small></span><span class="idx-val">28,435.20</span><span class="idx-chg up">+0.58%</span></div>
+            <div class="idx-row"><span class="idx-name">Mothers <small>성장기업</small></span><span class="idx-val">1,065.40</span><span class="idx-chg dn">−0.85%</span></div>
+          </div>
+          <p class="cs-issue">닛케이 60,000 부근 횡보, TOPIX는 강보합으로 디커플링. BOJ 금리 0.75% 동결, 인플레 전망 1.9→2.8% 대폭 상향, FY26 성장률 1.0→0.5% 하향. 중동발 공급 충격 반영. 엔/달러 159 엔저 지속, 수출주 명목 강세. 4/27 사상최고 60,903 후 차익실현. 추가 인상 7월 컨센.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">Toyota Motor 토요타 <small>7203.T / TM</small></span>
+            <span class="cap">시총 ¥45T · PER 11배</span>
+          </div>
+          <p class="cs-issue">일본 시총 1위 메가캡. HEV·PHEV 글로벌 1위, BEV는 2027년 본격 진입 예정. 25년 영업이익 ¥4.5T 사상최고. 자사주 매입 ¥1조 + 배당 증액. 미국 IRA 부분 존속으로 켄터키·노스캐롤라이나 공장 수혜. 엔저 환차익 분기 ¥2,000억. 1년 목표 +15%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Advantest 어드밴테스트 <small>6857.T</small></span>
+              <p class="hp-content">반도체 테스트 장비 글로벌 1위(점유율 55%). AI 칩 테스트 비중 60% 돌파, TSMC·엔비디아 핵심 공급사. 25년 매출 +75%, 영업이익률 35%. HBM 테스트 장비 독점적 지위. PER 35배 고평가지만 모멘텀 강력. 1년 목표 +30%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">MUFG 미쯔비시UFJ <small>8306.T</small></span>
+              <p class="hp-content">일본 1위 은행. BOJ 추가 인상(7월 예상) 시 직접 수혜로 NIM +20bp 확대 기대. 미국 모건스탠리 지분 24% 보유로 미국 IB 수익 동반. PER 11배 + 자사주 매입 ¥3,000억 진행. 배당수익률 3.8%. 1년 목표 +18%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 싱가폴 ━━ -->
+      <div class="country-card" id="c-sg">
+        <div class="country-head">
+          <span class="flag">🇸🇬</span>
+          <div class="country-meta-block">
+            <h3>싱가폴 <em>Singapore</em></h3>
+            <div class="exch">SGX 메인보드 · Catalist</div>
+          </div>
+          <div class="crank">N°5</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">Straits Times Index <small>STI</small></span><span class="idx-val">4,739.97</span><span class="idx-chg up">+0.32%</span></div>
+            <div class="idx-row"><span class="idx-name">FTSE ST Mid Cap <small>FSTMC</small></span><span class="idx-val">915.40</span><span class="idx-chg up">+0.45%</span></div>
+            <div class="idx-row"><span class="idx-name">Catalist Index <small>소형성장</small></span><span class="idx-val">312.80</span><span class="idx-chg dn">−0.18%</span></div>
+            <div class="idx-row"><span class="idx-name">FTSE ST REIT <small>리츠</small></span><span class="idx-val">820.50</span><span class="idx-chg up">+0.55%</span></div>
+          </div>
+          <p class="cs-issue">25년 +22.7% 글로벌 톱 클래스 성과. MAS의 시장개혁 + 안전자산 자금 유입 $2.3B. DBS 목표 STI 5,000pt(+5.5%). FY26 EPS 성장 +8.8% 컨센. 미·중 갈등의 중립지대로 자금 유입 지속, REIT 회복 모멘텀. 글로벌 가족자본(Family Office) 허브로 부상.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">DBS Group 디비에스 <small>D05.SI</small></span>
+            <span class="cap">시총 SG$140B · PER 10배</span>
+          </div>
+          <p class="cs-issue">동남아 1위 은행, STI 시총 1위. 25년 ROE 17% 사상최고, 배당수익률 5.8%. 자산운용·웰스 비중 30%로 다각화 성공. 디지털뱅크 Digibank 흑자전환. 자사주 매입 SG$30억 진행. 인도네시아·인도 디지털 라이선스 확보. 1년 목표 +14%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Sea Limited <small>SE</small></span>
+              <p class="hp-content">동남아 게임(Garena)·이커머스(Shopee)·핀테크(SeaMoney) 통합 플랫폼. 25년 흑자전환 가속, ShopeePay/SeaMoney 폭발 성장. 인도네시아·태국·브라질 점유율 1위. EBITDA 마진 12% → 18% 개선. PER 28배. 1년 목표 +30%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Singapore Tech. Engineering <small>S63.SI</small></span>
+              <p class="hp-content">방산·항공·해상 엔지니어링 통합. 호주 잠수함 정비 + 미군 드론 5년 수주. 25년 매출 +18%, 백로그 SG$280억 사상최대. 글로벌 방산 사이클 + 싱가폴 정부의 6세대 전투기 R&amp;D 파트너. 배당수익률 4.2%. 1년 목표 +22%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 베트남 ━━ -->
+      <div class="country-card" id="c-vn">
+        <div class="country-head">
+          <span class="flag">🇻🇳</span>
+          <div class="country-meta-block">
+            <h3>베트남 <em>Vietnam</em></h3>
+            <div class="exch">HOSE 호치민 · HNX 하노이 · UPCOM</div>
+          </div>
+          <div class="crank">★ HOT</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">VN-Index 호치민 <small>HOSE</small></span><span class="idx-val">1,876.20</span><span class="idx-chg up">+1.23%</span></div>
+            <div class="idx-row"><span class="idx-name">VN30 <small>대형 30종목</small></span><span class="idx-val">1,985.60</span><span class="idx-chg up">+1.45%</span></div>
+            <div class="idx-row"><span class="idx-name">HNX-Index 하노이 <small>HNX</small></span><span class="idx-val">285.94</span><span class="idx-chg up">+0.85%</span></div>
+            <div class="idx-row"><span class="idx-name">UPCOM Index <small>장외시장</small></span><span class="idx-val">105.20</span><span class="idx-chg up">+0.42%</span></div>
+          </div>
+          <p class="cs-issue">FTSE Russell이 베트남을 신흥시장(EM)으로 재분류, 9/21 발효 확정. EM 진입 시 글로벌 패시브 자금 $5~7B 유입 예상. 25년 GDP 7.5%(H1) 10년래 최고. 외국인 사전납입 의무 폐지 등 시장개혁 결실. VN-Index 사상최고, +52.99% YoY로 글로벌 1위 성과. MSCI EM 편입은 2027년 가능성.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">Vietcombank 베트콤뱅크 <small>VCB</small></span>
+            <span class="cap">시총 VND 700T · PER 13배</span>
+          </div>
+          <p class="cs-issue">베트남 시총 1위 국영은행. 미즈호 지분 15%로 거버넌스 안정. 25년 ROE 19%, NIM 3.2% 동남아 톱. 신용카드·리테일 시장 1위. EM 편입 시 외국인 자금 1차 수혜주. 자본확충 완료, 자사주 매입 진행 중. 베트남 부동산 회복 시 NPL 비율 추가 개선. 1년 목표 +25%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">FPT Corporation <small>FPT.HM</small></span>
+              <p class="hp-content">베트남 IT 아웃소싱 1위 기업. 일본 NTT·미국 GE·삼성전자 주요 고객. AI/Cloud 매출 YoY +60% 폭증. 25년 매출 VND 65조, 영업이익 +25%. 글로벌 진출 가속(미국·유럽 신규 사무소). FPT University 운영, 인재 풀 자체 확보. 1년 목표 +30%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Hoa Phat Group <small>HPG</small></span>
+              <p class="hp-content">베트남 철강 1위(점유율 32%). 인프라 슈퍼사이클 + 베트남 부동산 회복 동시 수혜. Dung Quat 2단계 가동(연 580만톤 추가). 25년 매출 +30%, 영업이익 +50%. PBR 1.1배 5년래 최저. 자동차용 강판 신사업 본격화. 1년 목표 +28%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 독일 ━━ -->
+      <div class="country-card" id="c-de">
+        <div class="country-head">
+          <span class="flag">🇩🇪</span>
+          <div class="country-meta-block">
+            <h3>독일 <em>Germany</em></h3>
+            <div class="exch">Deutsche Börse · Xetra · Frankfurt</div>
+          </div>
+          <div class="crank">N°6</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">DAX 40 <small>대형주</small></span><span class="idx-val">24,036.66</span><span class="idx-chg dn">−0.19%</span></div>
+            <div class="idx-row"><span class="idx-name">MDAX 50 <small>중형주</small></span><span class="idx-val">31,250.40</span><span class="idx-chg dn">−0.45%</span></div>
+            <div class="idx-row"><span class="idx-name">SDAX 70 <small>소형주</small></span><span class="idx-val">15,820.30</span><span class="idx-chg dn">−0.32%</span></div>
+            <div class="idx-row"><span class="idx-name">TecDAX 30 <small>기술주</small></span><span class="idx-val">3,985.20</span><span class="idx-chg up">+0.18%</span></div>
+          </div>
+          <p class="cs-issue">DAX 24,000 부근 횡보. 유가 100불·러시아 가스 공급 차질 우려로 압박. ECB 금리 동결, 6월 인하 가능성 60%. 독일 1Q GDP +0.4% 회복 흐름. 메르츠 정부 인프라·방산 €5,000억 패키지 가시화로 방산·인프라株 강세. 미국 자동차 관세 25%로 폭스바겐·BMW 압박 지속.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">SAP SE <small>SAP.DE / SAP</small></span>
+            <span class="cap">시총 €280B · PER 32배</span>
+          </div>
+          <p class="cs-issue">유럽 시총 1위 SW 거인. 클라우드 매출 YoY +30%, S/4HANA 마이그레이션 가속. 25년 영업이익률 27%로 마이크로소프트 추격. AI 코파일럿 Joule 출시, 1,500개 기업 도입. 자사주 매입 €50억. 비AI 매출도 안정적, 경기 방어 + 성장 동시. 1년 목표 +18%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Rheinmetall 라인메탈 <small>RHM.DE</small></span>
+              <p class="hp-content">독일 방산 1위. 우크라이나 + 독일 재무장 슈퍼사이클 정점. 25년 매출 +50%, 5년 백로그 €60B 사상최대. K2 전차 이탈리아 라이선스 수주, NATO 탄약 공동 생산. PER 30배 고평가 부담은 있으나 EPS CAGR 35%로 정당화. 1년 목표 +25%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Siemens Energy <small>ENR.DE</small></span>
+              <p class="hp-content">그리드/풍력터빈 글로벌 1위. AI 데이터센터·재생에너지 전력기기 수주 폭증, HVDC 변환기 5년 풀가동. 25년 매출 +20%, 흑자전환 가속. Gamesa 풍력 자회사 정상화 진행. 미국 텍사스 신공장 가동. 1년 목표 +28%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 영국 ━━ -->
+      <div class="country-card" id="c-uk">
+        <div class="country-head">
+          <span class="flag">🇬🇧</span>
+          <div class="country-meta-block">
+            <h3>영국 <em>United Kingdom</em></h3>
+            <div class="exch">LSE Main Market · AIM</div>
+          </div>
+          <div class="crank">N°7</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">FTSE 100 <small>대형 100</small></span><span class="idx-val">10,339.39</span><span class="idx-chg up">+0.18%</span></div>
+            <div class="idx-row"><span class="idx-name">FTSE 250 <small>중형주</small></span><span class="idx-val">22,485.20</span><span class="idx-chg up">+0.25%</span></div>
+            <div class="idx-row"><span class="idx-name">FTSE All-Share <small>전체</small></span><span class="idx-val">5,640.80</span><span class="idx-chg up">+0.20%</span></div>
+            <div class="idx-row"><span class="idx-name">AIM All-Share <small>소형성장</small></span><span class="idx-val">730.45</span><span class="idx-chg dn">−0.32%</span></div>
+          </div>
+          <p class="cs-issue">FTSE 100 사상최고치권 강보합. 셸·BP 등 에너지주가 유가 100불 재돌파로 강세 견인. BoE 금리 4.25%, 6월 인하 견조 컨센. 파운드 1.34달러 강세. 25년 GDP +1.2% 견조, 인플레 2.3%로 안정화. 글로벌 자금이 미국 대안으로 영국 가치주 재발견 흐름, P/E 13배로 저밸류 매력.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">AstraZeneca 아스트라제네카 <small>AZN.L / AZN</small></span>
+            <span class="cap">시총 £200B · PER 20배</span>
+          </div>
+          <p class="cs-issue">FTSE 100 시총 1위. 종양학·희귀질환 글로벌 강자. 25년 매출 $54B, ADC(항체-약물 결합체) 파이프라인 5종 임상 후기. Datroway 폐암 적응증 확대 승인. 자사주 매입 $40억. 비만 GLP-1 임상 진입. 28년 매출 $80B 목표. 1년 목표 +18%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Rolls-Royce Holdings <small>RR.L</small></span>
+              <p class="hp-content">항공엔진 + 소형 모듈 원자로(SMR) 더블 트리거. 영국·체코 SMR 수주 확정, 폴란드 협상 중. 민간항공 사후서비스(LTSA) 회복. 25년 영업이익률 16% 사상최고, FCF £30억. 자사주 매입 £10억. 25년 +80% 후에도 SMR 모멘텀 시작 단계. 1년 목표 +25%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">BAE Systems <small>BA.L</small></span>
+              <p class="hp-content">영국 방산 1위. 5세대 전투기 GCAP(영·일·이 공동개발) 본격화, 일본 자위대 도입 확정. 미국 방산 매출 비중 45%, F-35 부품·잠수함 핵심 공급사. 25년 백로그 £750억 사상최대. 영국 정부 GDP 2.5% 방산 지출 결정 수혜. 1년 목표 +22%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 캐나다 ━━ -->
+      <div class="country-card" id="c-ca">
+        <div class="country-head">
+          <span class="flag">🇨🇦</span>
+          <div class="country-meta-block">
+            <h3>캐나다 <em>Canada</em></h3>
+            <div class="exch">TSX · TSX Venture · CSE</div>
+          </div>
+          <div class="crank">N°8</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">S&amp;P/TSX Composite <small>TSX</small></span><span class="idx-val">33,818.40</span><span class="idx-chg dn">−0.20%</span></div>
+            <div class="idx-row"><span class="idx-name">S&amp;P/TSX 60 <small>대형주</small></span><span class="idx-val">2,015.30</span><span class="idx-chg dn">−0.18%</span></div>
+            <div class="idx-row"><span class="idx-name">TSX Venture <small>소형성장</small></span><span class="idx-val">685.50</span><span class="idx-chg up">+0.45%</span></div>
+            <div class="idx-row"><span class="idx-name">CSE Composite <small>벤처</small></span><span class="idx-val">128.80</span><span class="idx-chg neu">+0.05%</span></div>
+          </div>
+          <p class="cs-issue">BoC 4/29 금리결정 임박, 시장은 동결 컨센. 유가 100불 재돌파로 에너지주 견조(캐내디언 내추럴 +1.2%, 임페리얼 +1%). 4/29 미국 빅테크 어닝 앞두고 쇼피파이 −1.4% 차익실현. 캐나다·미국 무역마찰 완화 분위기, USMCA 재협상 5월 개시 가능성. 캐나다 달러 0.74 약세 지속.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">Royal Bank of Canada <small>RY.TO / RY</small></span>
+            <span class="cap">시총 CA$240B · PER 13배</span>
+          </div>
+          <p class="cs-issue">캐나다 시총 1위 은행. 25년 ROE 16%, 자본 CET1 13.8% 안전권. HSBC 캐나다 인수 시너지 본격 발현, 자산 통합 완료. 미국 City National Bank 흑자전환. 배당수익률 3.7%. 자사주 매입 CA$30억 진행. 미국 진출 가속 — 캐나다 GDP 둔화 헷지. 1년 목표 +12%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Constellation Software <small>CSU.TO</small></span>
+              <p class="hp-content">"캐나다의 버크셔". 수직형 SW 기업 200건+ 누적 인수, 25년 EBITDA 마진 26%. 분기마다 자회사 분사(Topicus, Lumine 등) + 신규 인수 지속. CEO Mark Leonard의 자본배분 능력은 업계 전설. 30년 CAGR 30% 트랙레코드. PER 38배 고평가지만 정당화. 1년 목표 +18%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Tourmaline Oil <small>TOU.TO</small></span>
+              <p class="hp-content">캐나다 천연가스 생산 1위. LNG Canada 1단계 가동(BC주) + 2단계 FID 임박으로 가스 공급 핵심사. 25년 매출 +35%, FCF 수익률 12%. 환경 규제 친화적 'low methane' 운영. 배당+특별배당 합계 수익률 7%. 1년 목표 +25%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ━━ 인도네시아 ━━ -->
+      <div class="country-card" id="c-id">
+        <div class="country-head">
+          <span class="flag">🇮🇩</span>
+          <div class="country-meta-block">
+            <h3>인도네시아 <em>Indonesia</em></h3>
+            <div class="exch">IDX (Indonesia Stock Exchange)</div>
+          </div>
+          <div class="crank">⚠ DOWN</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">01 · 거래소별 종합지수</div>
+          <div class="idx-list">
+            <div class="idx-row"><span class="idx-name">JCI / IHSG IDX Composite <small>JKSE</small></span><span class="idx-val">7,057.30</span><span class="idx-chg dn">−0.70%</span></div>
+            <div class="idx-row"><span class="idx-name">LQ45 <small>대형 45종목</small></span><span class="idx-val">945.20</span><span class="idx-chg dn">−0.85%</span></div>
+            <div class="idx-row"><span class="idx-name">IDX30 <small>최우량 30</small></span><span class="idx-val">528.40</span><span class="idx-chg dn">−0.92%</span></div>
+            <div class="idx-row"><span class="idx-name">IDX BUMN20 <small>국영기업</small></span><span class="idx-val">410.50</span><span class="idx-chg dn">−1.05%</span></div>
+          </div>
+          <p class="cs-issue">7,000 부근 7거래일 연속 하락, 3주 저점. 정부 비상기금 IDR 300조 감소로 재정 우려 확대. Fitch가 만디리·BRI·BCA·BNI 4대 은행 신용등급 전망을 '안정적→부정적'으로 강등. 다만 RSI 28로 과매도 진입, 단기 반등 기대감. 5월 BI 금리결정 주목, 인하 가능성. 11개국 중 가장 약한 모멘텀.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">02 · 시총 1위 기업</div>
+          <div class="company-row">
+            <span class="cn">Bank Central Asia <small>BBCA.JK</small></span>
+            <span class="cap">시총 IDR 1,200T · PER 21배</span>
+          </div>
+          <p class="cs-issue">인도네시아 시총 1위 은행. 모기지·중소기업 점유율 1위. 25년 ROE 22%로 동남아 톱. NIM 5.5% 견조. 디지털뱅크 BCA Mobile 사용자 3,800만 명 1위. Fitch 등급 전망 강등 충격으로 단기 −5%, 펀더멘털 변화 없어 매수 기회. 자사주 매입 IDR 5조. 1년 목표 +20%.</p>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">03 · 히든 종목 발굴</div>
+          <div class="hidden-pick">
+            <span class="hp-num">①</span>
+            <div class="hp-body">
+              <span class="hp-name">Telkom Indonesia <small>TLKM.JK</small></span>
+              <p class="hp-content">인도네시아 통신 1위 + 데이터센터 자회사 NeutraDC 1위. 5G 경매 수혜로 ARPU +15% 전망. 25년 매출 +8%, EBITDA 마진 50%. 데이터센터 5개 신규 가동, 2027년 글로벌 100MW급 확장. PER 12배 + 배당수익률 4.5% 안정적. 신흥국 디지털화 직접 수혜. 1년 목표 +18%.</p>
+            </div>
+          </div>
+          <div class="hidden-pick">
+            <span class="hp-num">②</span>
+            <div class="hp-body">
+              <span class="hp-name">Indofood CBP <small>ICBP.JK</small></span>
+              <p class="hp-content">'인도미(Indomie)' 글로벌 1위 라면 브랜드. 신흥국 인플레 헷지의 정공법. 25년 매출 +12%, 영업이익률 22% 사상최고. 나이지리아·이집트·터키 등 글로벌 50개국 진출. 환율 변동성에 강한 비즈니스. PER 14배 매력적. 배당수익률 3.2%. 1년 목표 +20%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note-box" style="margin-top:32px">
+      <strong>전문가의 글로벌 자산배분 종합 의견:</strong> 11개국 중 <strong style="color:var(--coral-deep)">★ HOT 3개국 (대만·베트남·미국)</strong>이 모멘텀 우위. 단, 대만·미국은 어닝 변수 대기로 분할 진입 권장. 베트남은 9/21 EM 편입까지 추세 유효. <strong>중기 매력 (가치 + 성장)</strong>: 영국·중국·홍콩·독일이 글로벌 P/E 12~16배로 미국 대비 35% 할인. <strong>단기 약세 활용</strong>: 인도네시아는 과매도(RSI 28) 단기 반등 트레이딩, 일본은 BOJ 인상 후 금융주 매수.
+      <br><br><strong>10억 → 100억 자산가의 글로벌 권장 배분</strong>: 미국 35% / 중화권(중국+홍콩+대만) 20% / 한국 15% / 일본 10% / 유럽(독일+영국) 10% / 신흥아시아(베트남+인니+싱가폴) 7% / 캐나다 3%. 매년 1회 리밸런싱.
+    </div>
+
   </section>
 
   <!-- FOOTER -->
